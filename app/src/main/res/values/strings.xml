@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PeriodTracker</string>
+    <string name="title_activity_statistics">Statistics</string>
+</resources>
