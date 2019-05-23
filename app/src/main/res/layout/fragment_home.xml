@@ -6,6 +6,18 @@
     tools:context=".Home"
     android:background="@color/colorPrimary">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progress"
+        android:background="@drawable/circle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="100"/>
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,11 +29,12 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryLight"
         android:textSize="150dp" />
-
+    -->
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home" />
+        android:text="Home"
+        android:id="@+id/test"/>
 
 </FrameLayout>

@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Statistics" />
         <activity android:name=".Notifications" />
-        <activity android:name=".Calendar" />
+        <activity android:name=".CalendarFragment" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

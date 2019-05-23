@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Calendar"
+    tools:context=".CalendarFragment"
     android:gravity="center_horizontal"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
+    <!--
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendar"
         android:layout_gravity="center"
         android:theme="@style/CalenderViewCustom"
         android:dateTextAppearance="@style/CalenderViewDateCustomText"
@@ -18,6 +19,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </CalendarView>
+    -->
+
+    <sun.bob.mcalendarview.MCalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CalendarFragment.java"
+        android:id="@+id/calendar">
+    </sun.bob.mcalendarview.MCalendarView>
+    <sun.bob.mcalendarview.views.ExpCalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CalendarFragment.java"
+        android:id="@+id/calendar_exp">
+    </sun.bob.mcalendarview.views.ExpCalendarView>
 
     <TextView
         android:id="@+id/date0"

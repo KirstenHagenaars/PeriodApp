@@ -13,5 +13,29 @@
         android:text="Statistics"
         android:textColor="@color/white"
         android:textSize="30dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cyclelength"
+            android:textColor="@color/white"
+            android:text="Cycle length: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/periodlength"
+            android:textColor="@color/white"
+            android:text="Period length: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/initdate"
+            android:text="Date of first period:"
+            android:textColor="@color/white"/>
+    </LinearLayout>
 
 </FrameLayout>
