@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import static android.app.PendingIntent.getActivity;
 /*
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
     static final String pref = "data";
+    static Toolbar toolbar;
 
     public MainActivity() {
     }
@@ -47,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         String initial = "cycleInitial";
 
         setContentView(R.layout.activity_main);
-
+        toolbar = findViewById(R.id.appbar);
+        setActionBar(toolbar);
         fm.beginTransaction().add(R.id.main_container, calendar, "4").hide(calendar).commit();
         fm.beginTransaction().add(R.id.main_container, notifications, "3").hide(notifications).commit();
         fm.beginTransaction().add(R.id.main_container, statistics, "2").hide(statistics).commit();
@@ -61,20 +64,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.navigation_home:
                         fm.beginTransaction().hide(active).show(home).detach(home).attach(home).commit();
+                        toolbar.setTitle("Home");
+                        toolbar.setSubtitle("");
                         active = home;
                         return true;
                     case R.id.navigation_calendar:
                         fm.beginTransaction().hide(active).show(calendar).commit();
                         fm.beginTransaction().detach(calendar).attach(calendar).commit();
+                        toolbar.setTitle("Calendar");
                         active = calendar;
                         return true;
                     case R.id.navigation_statistics:
                         fm.beginTransaction().hide(active).show(statistics).detach(statistics).attach(statistics).commit();
+                        toolbar.setTitle("Statistics");
+                        toolbar.setSubtitle("");
                         active = statistics;
                         return true;
                     case R.id.navigation_notifications:
                         fm.beginTransaction().hide(active).show(notifications).commit();
                         fm.beginTransaction().detach(notifications).attach(notifications).commit();
+                        toolbar.setTitle("Notifications");
+                        toolbar.setSubtitle("");
                         active = notifications;
                         return true;
                 }
@@ -111,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("day", day).commit();
         editor.putInt("month", month).commit();
         editor.putInt("year", year).commit();
+    }
+
+    public static void setToolbarMonth(String navigation)
+    {
+        toolbar.setSubtitle(navigation);
     }
 
     public class InitialDialog extends Dialog {

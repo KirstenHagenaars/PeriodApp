@@ -65,8 +65,8 @@ public class Home extends Fragment {
         final int calc = calculations;
         progress.setMax(startcycle);
         progress.setProgress(calc);
-        TextView test = homeFragment.findViewById(R.id.test);
-        test.setText("Test: "+ calculations);
+        TextView test = homeFragment.findViewById(R.id.days);
+        test.setText(calculations + "");
 
         homeFragment.invalidate();
     }

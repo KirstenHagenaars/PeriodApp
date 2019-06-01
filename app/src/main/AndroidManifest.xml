@@ -9,7 +9,7 @@
         android:launchMode="singleTop"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".Statistics" />
         <activity android:name=".Notifications" />
         <activity android:name=".CalendarFragment" />
