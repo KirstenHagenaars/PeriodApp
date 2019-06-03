@@ -20,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 "cycleInitial" --> whether or not initialized
@@ -28,6 +30,7 @@ import java.util.Calendar;
 "day" --> of last period
 "month"
 "year"
+"periods" stringset/hashset of all periods
  */
 
 public class Home extends Fragment {
@@ -76,12 +79,12 @@ public class Home extends Fragment {
         test.setText(calculations + "");
 
 
-        dataButton = (Button) getView().findViewById(R.id.button);
+        dataButton = (Button) homeFragment.findViewById(R.id.button);
         dataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //open pop-up
-                Dialog initializing = new InitialDialog();
+                new InitialDialog(getActivity());
 
             }
         });
@@ -91,28 +94,30 @@ public class Home extends Fragment {
     }
 
     public class InitialDialog extends Dialog {
-        public int Bleeding; //level of bleeding, from 0 to 3
-        public int Cramps;   //level of cramps, from 0 to 3
+        public String Bleeding; //level of bleeding, from 0 to 3
+        public String Cramps;   //level of cramps, from 0 to 3
         public Button ok;    //confirmation button
 
-        ImageView b0 = this.findViewById(R.id.nobleeding);
-        ImageView b1 = this.findViewById(R.id.lightbleeding);
-        ImageView b2 = this.findViewById(R.id.mediumbleeding);
-        ImageView b3 = this.findViewById(R.id.heavybleeding);
-        ImageView c0 = this.findViewById(R.id.nocramp);
-        ImageView c1 = this.findViewById(R.id.lightcramp);
-        ImageView c2 = this.findViewById(R.id.mediumcramp);
-        ImageView c3 = this.findViewById(R.id.heavycramp);
-
-        ImageView previousb = this.findViewById(R.id.nobleeding);
-        ImageView currentb = this.findViewById(R.id.nobleeding);
-
-        ImageView previousc = this.findViewById(R.id.nocramp);
-        ImageView currentc = this.findViewById(R.id.nocramp);
+        ImageView b0, b1, b2, b3, c0, c1, c2, c3, previousb, currentb, previousc, currentc;
 
         public InitialDialog(@NonNull Context context) {
             super(context);
             this.setContentView(R.layout.enterdatapopup);
+            b0 = this.findViewById(R.id.nobleeding);
+            b1 = this.findViewById(R.id.lightbleeding);
+            b2 = this.findViewById(R.id.mediumbleeding);
+            b3 = this.findViewById(R.id.heavybleeding);
+            c0 = this.findViewById(R.id.nocramp);
+            c1 = this.findViewById(R.id.lightcramp);
+            c2 = this.findViewById(R.id.mediumcramp);
+            c3 = this.findViewById(R.id.heavycramp);
+            previousb = this.findViewById(R.id.nobleeding);
+            currentb = this.findViewById(R.id.nobleeding);
+
+            previousc = this.findViewById(R.id.nocramp);
+            currentc = this.findViewById(R.id.nocramp);
+            final SharedPreferences data = context.getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
+            final SharedPreferences.Editor editor = data.edit();
             this.show();
             ok = this.findViewById(R.id.confirm);
             b0.setOnClickListener(new View.OnClickListener() {
@@ -183,23 +188,30 @@ public class Home extends Fragment {
                 @Override
                 public void onClick(View v) {
                     switch (currentb.getId()){
-                        case R.id.nobleeding: Bleeding = 0; break;
-                        case R.id.lightbleeding: Bleeding = 1; break;
-                        case R.id.mediumbleeding: Bleeding = 2; break;
-                        case R.id.heavybleeding: Bleeding = 3; break;
+                        case R.id.nobleeding: Bleeding = "0"; break;
+                        case R.id.lightbleeding: Bleeding = "1"; break;
+                        case R.id.mediumbleeding: Bleeding = "2"; break;
+                        case R.id.heavybleeding: Bleeding = "3"; break;
                     }
                     switch (currentc.getId()){
-                        case R.id.nocramp: Cramps = 0; break;
-                        case R.id.lightcramp: Cramps = 1; break;
-                        case R.id.mediumcramp: Cramps = 2; break;
-                        case R.id.heavycramp: Cramps = 3; break;
+                        case R.id.nocramp: Cramps = "0"; break;
+                        case R.id.lightcramp: Cramps = "1"; break;
+                        case R.id.mediumcramp: Cramps = "2"; break;
+                        case R.id.heavycramp: Cramps = "3"; break;
                     }
 
                     //close pop-up
+                    MainActivity.savePeriodInList(data, Calendar.getInstance().toString(), Bleeding, Cramps);
+                    close();
+
                 }
             });
         }
 
+        public void close()
+        {
+            this.dismiss();
+        }
         private void ToggleB()
         {
             previousb.setImageResource(R.drawable.ic_action_name);

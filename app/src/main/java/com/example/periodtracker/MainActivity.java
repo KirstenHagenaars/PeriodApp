@@ -16,6 +16,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toolbar;
 
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
+
 import static android.app.PendingIntent.getActivity;
 /*
 "cycleInitial" --> whether or not initialized
@@ -96,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
             Dialog initializing = new InitialDialog(MainActivity.this);
             editor.putInt(initial, 1).apply();
         }
+    }
+
+    public static void savePeriodInList(SharedPreferences data, String date, String bleeding, String cramps)
+    {
+        Set<String> init = new HashSet<>();
+        SharedPreferences.Editor editor = data.edit();
+
+        Set<String> periods = data.getStringSet("periods", init);
+        periods.add(Calendar.getInstance().toString());
+        periods.add(bleeding);
+        periods.add(cramps);
+        editor.putStringSet("periods", periods);
+        editor.apply();
     }
 
     public void setCycleInitial ( int c)

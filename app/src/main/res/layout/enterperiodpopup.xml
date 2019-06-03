@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:gravity="center">
+    <!-- For some reason width needs to be hardcoded otherwise it is too slim -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:text="              None      Light      Medium      Heavy"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:text="Bleeding: "/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nobleeding"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lightbleeding"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mediumbleeding"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/heavybleeding"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cramps: "
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/nocramp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/lightcramp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/mediumcramp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/heavycramp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_action_name"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datepicker"
+        android:calendarViewShown="false"
+        android:spinnersShown="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm"
+        android:text="OK"
+        android:textColor="@color/black"/>
+
+
+
+</LinearLayout>
