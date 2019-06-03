@@ -1,15 +1,21 @@
 package com.example.periodtracker;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +31,7 @@ import java.util.Calendar;
  */
 
 public class Home extends Fragment {
+    Button dataButton;
 
     public Home() {
         // Required empty public constructor
@@ -68,6 +75,140 @@ public class Home extends Fragment {
         TextView test = homeFragment.findViewById(R.id.days);
         test.setText(calculations + "");
 
+
+        dataButton = (Button) getView().findViewById(R.id.button);
+        dataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //open pop-up
+                Dialog initializing = new InitialDialog();
+
+            }
+        });
+
+
         homeFragment.invalidate();
+    }
+
+    public class InitialDialog extends Dialog {
+        public int Bleeding; //level of bleeding, from 0 to 3
+        public int Cramps;   //level of cramps, from 0 to 3
+        public Button ok;    //confirmation button
+
+        ImageView b0 = this.findViewById(R.id.nobleeding);
+        ImageView b1 = this.findViewById(R.id.lightbleeding);
+        ImageView b2 = this.findViewById(R.id.mediumbleeding);
+        ImageView b3 = this.findViewById(R.id.heavybleeding);
+        ImageView c0 = this.findViewById(R.id.nocramp);
+        ImageView c1 = this.findViewById(R.id.lightcramp);
+        ImageView c2 = this.findViewById(R.id.mediumcramp);
+        ImageView c3 = this.findViewById(R.id.heavycramp);
+
+        ImageView previousb = this.findViewById(R.id.nobleeding);
+        ImageView currentb = this.findViewById(R.id.nobleeding);
+
+        ImageView previousc = this.findViewById(R.id.nocramp);
+        ImageView currentc = this.findViewById(R.id.nocramp);
+
+        public InitialDialog(@NonNull Context context) {
+            super(context);
+            this.setContentView(R.layout.enterdatapopup);
+            this.show();
+            ok = this.findViewById(R.id.confirm);
+            b0.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousb = currentb;
+                    currentb = b0;
+                    ToggleB();
+                }
+            });
+            b1.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousb = currentb;
+                    currentb = b1;
+                    ToggleB();
+                }
+            });
+            b2.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousb = currentb;
+                    currentb = b2;
+                    ToggleB();
+                }
+            });
+            b3.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousb = currentb;
+                    currentb = b3;
+                    ToggleB();
+                }
+            });
+            c0.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousc = currentc;
+                    currentc = c0;
+                    ToggleC();
+                }
+            });
+            c1.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousc = currentc;
+                    currentc = c1;
+                    ToggleC();
+                }
+            });
+            c2.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousc = currentc;
+                    currentc = c2;
+                    ToggleC();
+                }
+            });
+            c3.setOnClickListener(new View.OnClickListener() {
+                //@Override
+                public void onClick(View v) {
+                    previousc = currentc;
+                    currentc = c3;
+                    ToggleC();
+                }
+            });
+            ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (currentb.getId()){
+                        case R.id.nobleeding: Bleeding = 0; break;
+                        case R.id.lightbleeding: Bleeding = 1; break;
+                        case R.id.mediumbleeding: Bleeding = 2; break;
+                        case R.id.heavybleeding: Bleeding = 3; break;
+                    }
+                    switch (currentc.getId()){
+                        case R.id.nocramp: Cramps = 0; break;
+                        case R.id.lightcramp: Cramps = 1; break;
+                        case R.id.mediumcramp: Cramps = 2; break;
+                        case R.id.heavycramp: Cramps = 3; break;
+                    }
+
+                    //close pop-up
+                }
+            });
+        }
+
+        private void ToggleB()
+        {
+            previousb.setImageResource(R.drawable.ic_action_name);
+            currentb.setImageResource(R.drawable.ic_action_name2);
+        }
+        private void ToggleC()
+        {
+            previousc.setImageResource(R.drawable.ic_action_name);
+            currentc.setImageResource(R.drawable.ic_action_name2);
+        }
     }
 }

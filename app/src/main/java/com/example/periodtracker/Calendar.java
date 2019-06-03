@@ -24,7 +24,7 @@ public class Calendar extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        calendar = (CalendarView) getView().findViewById(R.id.calendarView);
+        calendar = (CalendarView) getView().findViewById(R.id.calendar);
         date0 = (TextView) getView().findViewById(R.id.date0);
         date1 = (TextView) getView().findViewById(R.id.date1);
         date2 = (TextView) getView().findViewById(R.id.date2);
