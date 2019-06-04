@@ -3,6 +3,7 @@ package com.example.periodtracker;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -18,8 +19,6 @@ import android.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 
 import static android.app.PendingIntent.getActivity;
 /*
@@ -72,18 +71,26 @@ public class MainActivity extends AppCompatActivity {
                         fm.beginTransaction().hide(active).show(home).detach(home).attach(home).commit();
                         toolbar.setTitle("Home");
                         toolbar.setSubtitle("");
+                        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+                        toolbar.setTitleTextAppearance(MainActivity.this,R.style.navigation);
                         active = home;
                         return true;
                     case R.id.navigation_calendar:
                         fm.beginTransaction().hide(active).show(calendar).commit();
                         fm.beginTransaction().detach(calendar).attach(calendar).commit();
                         toolbar.setTitle("Calendar");
+                        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+                        toolbar.setSubtitleTextColor(Color.parseColor("#FFFFFF"));
+                        toolbar.setSubtitleTextAppearance(MainActivity.this,R.style.navigation);
+                        toolbar.setTitleTextAppearance(MainActivity.this,R.style.navigation);
                         active = calendar;
                         return true;
                     case R.id.navigation_statistics:
                         fm.beginTransaction().hide(active).show(statistics).detach(statistics).attach(statistics).commit();
                         toolbar.setTitle("Statistics");
                         toolbar.setSubtitle("");
+                        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+                        toolbar.setTitleTextAppearance(MainActivity.this,R.style.navigation);
                         active = statistics;
                         return true;
                     case R.id.navigation_notifications:
@@ -91,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                         fm.beginTransaction().detach(notifications).attach(notifications).commit();
                         toolbar.setTitle("Notifications");
                         toolbar.setSubtitle("");
+                        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+                        toolbar.setTitleTextAppearance(MainActivity.this,R.style.navigation);
                         active = notifications;
                         return true;
                 }
