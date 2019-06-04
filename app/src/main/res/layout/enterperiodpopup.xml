@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
@@ -12,12 +13,12 @@
         android:weightSum="2">
 
         <TextView
-            android:layout_width="416dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
             android:text="              None      Light      Medium      Heavy"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -29,9 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
+            android:paddingLeft="4dp"
             android:text="Bleeding: "
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/nobleeding"
@@ -51,7 +53,7 @@
 
         <ImageView
             android:id="@+id/mediumbleeding"
-            android:layout_width="81dp"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -59,7 +61,7 @@
 
         <ImageView
             android:id="@+id/heavybleeding"
-            android:layout_width="118dp"
+            android:layout_width="93dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -71,12 +73,13 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="74dp"
+            android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
             android:text="Cramps: "
+            android:paddingLeft="4dp"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/nocramp"
@@ -96,7 +99,7 @@
 
         <ImageView
             android:id="@+id/mediumcramp"
-            android:layout_width="81dp"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -104,7 +107,7 @@
 
         <ImageView
             android:id="@+id/heavycramp"
-            android:layout_width="118dp"
+            android:layout_width="93dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -113,9 +116,12 @@
 
     <DatePicker
         android:id="@+id/datepicker"
+        android:theme="@style/NumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:calendarViewShown="false"
+        android:headerBackground="@color/period"
         android:spinnersShown="true" />
 
     <Button
