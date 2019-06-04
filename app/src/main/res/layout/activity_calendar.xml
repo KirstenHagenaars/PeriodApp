@@ -29,43 +29,50 @@
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
         android:layout_width="fill_parent"
-        android:paddingRight="10dp"
+        android:layout_height="314dp"
         android:paddingLeft="10dp"
-        android:layout_height="250dp"
-        app:compactCalendarTargetHeight="250dp"
-        app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#ffe95451"
-        app:compactCalendarTextColor="#fff"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+        android:paddingRight="10dp"
+        app:compactCalendarBackgroundColor="#341111"
+        app:compactCalendarCurrentDayBackgroundColor="#D25252"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#B71C1C"
         app:compactCalendarMultiEventIndicatorColor="#fff"
-        />
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextColor="#fff"
+        app:compactCalendarTextSize="12sp" />
 
     <TextView
         android:id="@+id/date0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="51dp"
+        android:fontFamily="@font/dancing"
+        android:text="Last date:"
         android:textColor="@color/white"
-        android:text="last date:"
-        android:textSize="30dp"/>
+        android:textSize="40dp" />
+
     <TextView
         android:id="@+id/date1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:fontFamily="@font/dancing"
+        android:text="First upcoming:"
         android:textColor="@color/white"
-        android:text="1st upcoming:"
-        android:textSize="30dp"/>
+        android:textSize="40dp" />
+
     <TextView
         android:id="@+id/date2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="62dp"
+        android:fontFamily="@font/dancing"
+        android:text="Second upcoming:"
         android:textColor="@color/white"
-        android:text="2nd upcoming"
-        android:textSize="30dp"/>
+        android:textSize="40dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/enterdate"
-        android:text="Enter a date"/>
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:background="@color/period"
+        android:fontFamily="@font/dancing"
+        android:text="Enter a date"
+        android:textSize="20dp" />
 </LinearLayout>

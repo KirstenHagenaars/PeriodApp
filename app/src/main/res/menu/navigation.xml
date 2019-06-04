@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_statistics"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_poll_black_24dp"
         android:title="Statistics" />
 
     <item

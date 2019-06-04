@@ -2,8 +2,9 @@
 <resources>
     <color name="white">#ffff</color>
     <color name="colorPrimaryLight">#ababab</color>
-    <color name="colorPrimary">#424242</color>
-    <color name="colorPrimaryDark">#2D2D2D</color>
+    <color name="colorPrimary">#341111</color>
+    <!--<color name="colorPrimaryDark">#2D2D2D</color>-->
+    <color name="colorPrimaryDark">#000000</color>
     <color name="black">#000000</color>
     <color name="red">#D25252</color>
     <color name="orange">#CB772F</color>
@@ -13,4 +14,5 @@
     <color name="lightblue">#BED6FF</color>
     <color name="purple">#9876AA</color>
     <color name="pink">#8d2663</color>
+    <color name="period">#B71C1C</color>
 </resources>
