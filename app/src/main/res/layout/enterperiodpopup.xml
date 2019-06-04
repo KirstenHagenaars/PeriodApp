@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:gravity="center"
@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
             android:text="              None   Light   Medium   Heavy"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
@@ -30,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
-            android:paddingLeft="4dp"
+            android:paddingLeft="10dp"
             android:text="Bleeding: "
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -73,11 +75,11 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="76dp"
+            android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
+            android:paddingLeft="10dp"
             android:text="Cramps: "
-            android:paddingLeft="4dp"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -116,21 +118,22 @@
 
     <DatePicker
         android:id="@+id/datepicker"
-        android:theme="@style/NumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
         android:calendarViewShown="false"
         android:headerBackground="@color/period"
-        android:spinnersShown="true" />
+        android:paddingTop="5dp"
+        android:spinnersShown="true"
+        android:theme="@style/NumberPickerStyle" />
 
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@color/period"
-        android:text="OK"
         android:fontFamily="@font/dancing"
+        android:text="OK"
         android:textColor="@color/black" />
 
 
