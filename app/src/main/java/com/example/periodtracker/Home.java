@@ -3,24 +3,22 @@ package com.example.periodtracker;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -59,22 +57,22 @@ public class Home extends Fragment {
         return homeFragment;
     }
 
-    private void init(View homeFragment) {
+    private void init(View homeFragment){
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
         final ProgressBar progress = homeFragment.findViewById(R.id.progressBar);
         Calendar today = Calendar.getInstance();
-        Calendar last = Calendar.getInstance();
-        last.set(data.getInt("year", 0), (data.getInt("month", 0)), data.getInt("day", 0));
+        Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
         final int startcycle = data.getInt("cyclelength", 0);
+        System.out.println("WTF"+last.toString());
+
         int calculations = startcycle;
-        //Calculations only work once we restart the app...WHY???HELP!!!!
-        while (calculations != 0 && !(last.equals(today))) {
+        //Calculations only work once we restart the app...WHY???HELP!!!! Kinda fixed...
+        while (calculations != 0 && !last.equals(today)) {
             last.add(Calendar.DAY_OF_MONTH, 1);
             calculations--;
         }
-        final int calc = calculations;
         progress.setMax(startcycle);
-        progress.setProgress(calc);
+        progress.setProgress(calculations);
         TextView test = homeFragment.findViewById(R.id.days);
         test.setText(calculations + "");
 
@@ -94,8 +92,8 @@ public class Home extends Fragment {
     }
 
     public class InitialDialog extends Dialog {
-        public String Bleeding; //level of bleeding, from 0 to 3
-        public String Cramps;   //level of cramps, from 0 to 3
+        public int bleeding; //level of bleeding, from 0 to 3
+        public int cramps;   //level of cramps, from 0 to 3
         public Button ok;    //confirmation button
 
         ImageView b0, b1, b2, b3, c0, c1, c2, c3, previousb, currentb, previousc, currentc;
@@ -188,20 +186,21 @@ public class Home extends Fragment {
                 @Override
                 public void onClick(View v) {
                     switch (currentb.getId()){
-                        case R.id.nobleeding: Bleeding = "0"; break;
-                        case R.id.lightbleeding: Bleeding = "1"; break;
-                        case R.id.mediumbleeding: Bleeding = "2"; break;
-                        case R.id.heavybleeding: Bleeding = "3"; break;
+                        case R.id.nobleeding: bleeding = 0; break;
+                        case R.id.lightbleeding: bleeding = 1; break;
+                        case R.id.mediumbleeding: bleeding = 2; break;
+                        case R.id.heavybleeding: bleeding = 3; break;
                     }
                     switch (currentc.getId()){
-                        case R.id.nocramp: Cramps = "0"; break;
-                        case R.id.lightcramp: Cramps = "1"; break;
-                        case R.id.mediumcramp: Cramps = "2"; break;
-                        case R.id.heavycramp: Cramps = "3"; break;
+                        case R.id.nocramp: cramps = 0; break;
+                        case R.id.lightcramp: cramps = 1; break;
+                        case R.id.mediumcramp: cramps = 2; break;
+                        case R.id.heavycramp: cramps = 3; break;
                     }
 
                     //close pop-up
-                    MainActivity.savePeriodInList(data, Calendar.getInstance().toString(), Bleeding, Cramps);
+                    MainActivity.savePeriodInList(data, Calendar.DAY_OF_MONTH, Calendar.MONTH, Calendar.YEAR, bleeding, cramps);
+                    //System.out.println("WTF" + Calendar.getInstance().toString());
                     close();
 
                 }

@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toolbar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +29,7 @@ import static android.app.PendingIntent.getActivity;
 "day" --> of last period
 "month"
 "year"
+"periods"
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
-        String initial = "cycleInitial";
+        String index = "index";
 
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.appbar);
@@ -96,26 +98,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (!data.contains(initial)||data.getInt("cyclelength", 0)==0 || data.getInt("periodlength", 0)==0) {
-            Dialog initializing = new InitialDialog(MainActivity.this);
-            editor.putInt(initial, 1).apply();
+        if (!data.contains(index)||data.getInt("cyclelength", 0)==0 || data.getInt("periodlength", 0)==0) {
+            new InitialDialog(MainActivity.this);
         }
     }
 
-    public static void savePeriodInList(SharedPreferences data, String date, String bleeding, String cramps)
+    //When we save the date we save the month as it comes. So January will be 0, February 1 and so on
+    public static void savePeriodInList(SharedPreferences data, int day, int month, int year, int bleeding, int cramps)
     {
-        Set<String> init = new HashSet<>();
         SharedPreferences.Editor editor = data.edit();
 
-        Set<String> periods = data.getStringSet("periods", init);
-        periods.add(Calendar.getInstance().toString());
-        periods.add(bleeding);
-        periods.add(cramps);
-        editor.putStringSet("periods", periods);
+        editor.putInt("day" + getIndex(data), day).apply();
+        editor.putInt("month" + getIndex(data), month).apply();
+        editor.putInt("year" + getIndex(data), year).apply();
+        editor.putInt("bleeding" + getIndex(data), bleeding).apply();
+        editor.putInt("cramps" + getIndex(data), cramps).apply();
+        incrementIndex(data);
+    }
+
+    public static int getIndex(SharedPreferences data){
+        return data.getInt("index", 0);
+    }
+
+    public static void incrementIndex(SharedPreferences data){
+        SharedPreferences.Editor editor = data.edit();
+        if(getIndex(data)+1 > 10)//so we always ony´ly save the 10 most recent events
+            editor.putInt("index", 0);
+        else
+            editor.putInt("index", getIndex(data)+1);
         editor.apply();
     }
 
-    public void setCycleInitial ( int c)
+    //When we just want to retrieve a date we also leave the month as it is, so starting with Jan 0 going to Dec 11
+    public static Calendar getDate(SharedPreferences data, int index)
+    {
+        Calendar date = Calendar.getInstance();
+        date.set(data.getInt("year" + index, 0), data.getInt("month" + index, 0), data.getInt("day" + index, 0));
+        return date;
+    }
+
+    //only once we print dates we care about the month and SimpleDateFormat changes Jan 0 to Jan 1.
+    public static String printDate(Calendar date)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return dateFormat.format(date.getTime());
+    }
+
+    public void setCycleInitial (int c)
     {
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
@@ -131,15 +160,6 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void setDate(int day, int month, int year)
-    {
-        SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = data.edit();
-        editor.putInt("day", day).commit();
-        editor.putInt("month", month).commit();
-        editor.putInt("year", year).commit();
-    }
-
     public static void setToolbarMonth(String navigation)
     {
         toolbar.setSubtitle(navigation);
@@ -149,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         public EditText cycle, period;
         public DatePicker datePicker;
         public Button ok;
-        public InitialDialog(@NonNull Context context) {
+        public InitialDialog(@NonNull final Context context) {
             super(context);
             this.setContentView(R.layout.initializationpopup);
             this.show();
@@ -160,9 +180,12 @@ public class MainActivity extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Calendar date = Calendar.getInstance();
+                    date.set(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
+                    savePeriodInList(context.getSharedPreferences(pref, Context.MODE_PRIVATE), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear(), 0, 0);
                     MainActivity.this.setCycleInitial(getCycle());
                     MainActivity.this.setPeriodInitial(getPeriod());
-                    MainActivity.this.setDate(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
+                    //MainActivity.this.setDate(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
                     InitialDialog.this.dismiss();
 
                     bottomNavigation.setSelectedItemId(bottomNavigation.getSelectedItemId());

@@ -10,6 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
+
 public class Statistics extends Fragment {
 
 
@@ -24,7 +33,9 @@ public class Statistics extends Fragment {
         TextView date = statsFragment.findViewById(R.id.initdate);
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
-        date.setText(date.getText() + " " + getDay(data) + "." + getMonth(data) +"." + getYear(data));
+        Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        date.setText(date.getText() + MainActivity.printDate(last));
+        System.out.println("WHY" + last.toString());
         return statsFragment;
     }
 
@@ -38,17 +49,37 @@ public class Statistics extends Fragment {
         return data.getInt("periodlength", 0);
     }
 
-    public int getDay(SharedPreferences data)
+    public int averageCycle(SharedPreferences data)
     {
-        return data.getInt("day", 0);
-    }
-    public int getMonth(SharedPreferences data)
-    {
-        return ((data.getInt("month", 0))+1);
-    }
-    public int getYear(SharedPreferences data)
-    {
-        return data.getInt("year", 0);
+        long[] diff = new long[9];
+        List<Calendar> dates = sortDates(data);
+        for(int i = 0; i < 9; i++)
+        {
+            Calendar c1 = dates.get(i);
+            Calendar c2 = dates.get(i+1);
+            diff[i]=(c1.getTimeInMillis()-c2.getTimeInMillis());
+        }
+        OptionalDouble difference = Arrays.stream(diff).average();
+        return (int) Math.round(difference.getAsDouble());
     }
 
+    public List<Calendar> sortDates(SharedPreferences data)
+    {
+        List<Calendar> list = new ArrayList<>();
+        for(int i = 0; i < 10; i++)
+        {
+            list.add(MainActivity.getDate(data, i));
+        }
+        list.sort(new Comparator<Calendar>() {
+            @Override
+            public int compare(Calendar o1, Calendar o2) {
+                if (o1.before(o2))
+                        return -1;
+                else if(o1.after(o2))
+                    return 1;
+                return 0;//then they are equal
+            }
+        });
+        return list;
+    }
 }
