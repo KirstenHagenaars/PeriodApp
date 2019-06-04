@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".CalendarFragment">
 
@@ -24,12 +23,16 @@
     <TextView
         android:id="@+id/month"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="parent" />
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
         android:layout_width="fill_parent"
         android:layout_height="314dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:compactCalendarBackgroundColor="#341111"
@@ -38,16 +41,24 @@
         app:compactCalendarMultiEventIndicatorColor="#fff"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextColor="#fff"
-        app:compactCalendarTextSize="12sp" />
+        app:compactCalendarTextSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/month"
+        app:layout_constraintVertical_bias="0.0" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginTop="292dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/month"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/date0"
@@ -103,9 +114,11 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="422dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+        tools:layout_editor_absoluteX="0dp">
 
         <Button
             android:id="@+id/enterdate"
@@ -127,4 +140,4 @@
     </android.support.constraint.ConstraintLayout>
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
