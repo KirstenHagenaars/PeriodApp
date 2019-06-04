@@ -22,9 +22,9 @@
     -->
 
     <TextView
+        android:id="@+id/month"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/month"/>
+        android:layout_height="wrap_content" />
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
