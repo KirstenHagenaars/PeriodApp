@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarFragment"
-    android:gravity="center_horizontal"
     android:background="@color/colorPrimary"
-    android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".CalendarFragment">
 
     <!--
     <CalendarView
@@ -40,39 +40,91 @@
         app:compactCalendarTextColor="#fff"
         app:compactCalendarTextSize="12sp" />
 
-    <TextView
-        android:id="@+id/date0"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:fontFamily="@font/dancing"
-        android:text="Last date:"
-        android:textColor="@color/white"
-        android:textSize="40dp" />
-
-    <TextView
-        android:id="@+id/date1"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:fontFamily="@font/dancing"
-        android:text="First upcoming:"
-        android:textColor="@color/white"
-        android:textSize="40dp" />
-
-    <TextView
-        android:id="@+id/date2"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:fontFamily="@font/dancing"
-        android:text="Second upcoming:"
-        android:textColor="@color/white"
-        android:textSize="40dp" />
-
-    <Button
-        android:id="@+id/enterdate"
-        android:layout_width="139dp"
         android:layout_height="wrap_content"
-        android:background="@color/period"
-        android:fontFamily="@font/dancing"
-        android:text="Enter a date"
-        android:textSize="20dp" />
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/date0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/dancing"
+            android:text="Last date:"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/dancing"
+            android:text="First upcoming:"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date0" />
+
+        <TextView
+            android:id="@+id/date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/dancing"
+            android:text="Second upcoming:"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.039"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date1" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="422dp">
+
+        <Button
+            android:id="@+id/enterdate"
+            android:layout_width="155dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/period"
+            android:fontFamily="@font/dancing"
+            android:text="Enter a date"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
+
+
 </LinearLayout>
