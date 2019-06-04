@@ -112,17 +112,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static int getCyclelength(SharedPreferences data)
+    {
+        return data.getInt("cyclelength", 28);
+    }
+
+    public static void setCycleLength(SharedPreferences data)
+    {
+        //TODO change average of the cycle length
+    }
+
+    public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year)
+    {
+        //get previous date and check if its yesterday
+        Calendar dateRecentPeriod = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        //TODO check if user was bleeding yesterday
+//        if (bleeding)
+//            return false;
+        return true;
+    }
+
     //When we save the date we save the month as it comes. So January will be 0, February 1 and so on
     public static void savePeriodInList(SharedPreferences data, int day, int month, int year, int bleeding, int cramps)
     {
-        SharedPreferences.Editor editor = data.edit();
+        if (firstDayOfPeriod(data, day, month, year))
+        {
+            SharedPreferences.Editor editor = data.edit();
 
-        editor.putInt("day" + getIndex(data), day).apply();
-        editor.putInt("month" + getIndex(data), month).apply();
-        editor.putInt("year" + getIndex(data), year).apply();
-        editor.putInt("bleeding" + getIndex(data), bleeding).apply();
-        editor.putInt("cramps" + getIndex(data), cramps).apply();
-        incrementIndex(data);
+            editor.putInt("day" + getIndex(data), day).apply();
+            editor.putInt("month" + getIndex(data), month).apply();
+            editor.putInt("year" + getIndex(data), year).apply();
+            editor.putInt("bleeding" + getIndex(data), bleeding).apply();
+            editor.putInt("cramps" + getIndex(data), cramps).apply();
+            incrementIndex(data);
+            // setCycleLength(data)
+        }
+
     }
 
     public static int getIndex(SharedPreferences data){
