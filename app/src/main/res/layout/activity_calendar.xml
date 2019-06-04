@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:gravity="center_horizontal|bottom"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary">
+    tools:context=".CalendarFragment"
+    android:gravity="center_horizontal"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
-    <Toolbar
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-    </Toolbar>
+    <!--
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_gravity="center"
+        android:theme="@style/CalenderViewCustom"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </CalendarView>
+    -->
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"
-        android:layout_alignParentTop="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"></FrameLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/period"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation" />
+        android:id="@+id/month"/>
 
-</RelativeLayout>
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        android:id="@+id/calendar"
+        android:layout_width="fill_parent"
+        android:layout_height="314dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarBackgroundColor="#341111"
+        app:compactCalendarCurrentDayBackgroundColor="#D25252"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#B71C1C"
+        app:compactCalendarMultiEventIndicatorColor="#fff"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextColor="#fff"
+        app:compactCalendarTextSize="12sp" />
+
+    <TextView
+        android:id="@+id/date0"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:fontFamily="@font/dancing"
+        android:text="Last date:"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:fontFamily="@font/dancing"
+        android:text="First upcoming:"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:fontFamily="@font/dancing"
+        android:text="Second upcoming:"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/enterdate"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:background="@color/period"
+        android:fontFamily="@font/dancing"
+        android:text="Enter a date"
+        android:textSize="20dp" />
+</LinearLayout>

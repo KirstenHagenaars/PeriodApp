@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="106dp"
         android:text="Notifications"
+        android:fontFamily="@font/dancing"
         android:textColor="@color/white"
-        android:textSize="30dp" />
+        android:textSize="40dp" />
 
 </FrameLayout>
