@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:theme="@style/PeriodLengthStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
@@ -36,6 +35,7 @@
             android:textColor="@color/white"
             android:text="Average period length: "/>
         <EditText
+            android:theme="@style/PeriodLengthStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/period"
