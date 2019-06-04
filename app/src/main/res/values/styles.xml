@@ -53,4 +53,13 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
+    <style name="navigation">
+        <item name="android:titleTextColor">@color/white</item>
+        <item name="android:fontFamily">@font/dancing</item>
+    </style>
+
+    <style name="bottomNav">
+        <item name="android:fontFamily">@font/dancing</item>
+    </style>
+
 </resources>
