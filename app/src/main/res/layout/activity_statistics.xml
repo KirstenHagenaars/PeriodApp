@@ -11,31 +11,43 @@
         android:layout_width="match_parent"
         android:layout_height="106dp"
         android:text="Statistics"
+        android:textAlignment="center"
+        android:fontFamily="@font/dancing"
         android:textColor="@color/white"
-        android:textSize="30dp"/>
+        android:textSize="50dp"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/cyclelength"
-            android:textColor="@color/white"
-            android:text="Cycle length: "/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dancing"
+            android:text="Cycle length: "
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+        <TextView
             android:id="@+id/periodlength"
-            android:textColor="@color/white"
-            android:text="Period length: "/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dancing"
+            android:text="Period length: "
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+        <TextView
             android:id="@+id/initdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dancing"
             android:text="Date of first period:"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="30dp" />
     </LinearLayout>
 
 </FrameLayout>

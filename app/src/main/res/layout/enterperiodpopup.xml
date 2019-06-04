@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
     <!-- For some reason width needs to be hardcoded otherwise it is too slim -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:fontFamily="@font/dancing"
+            android:text="              None   Light   Medium   Heavy"
             android:textColor="@color/white"
-            android:text="              None      Light      Medium      Heavy"/>
+            android:textSize="20sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:fontFamily="@font/dancing"
+            android:paddingLeft="4dp"
+            android:text="Bleeding: "
             android:textColor="@color/white"
-            android:text="Bleeding: "/>
+            android:textSize="20sp" />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/nobleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
             android:id="@+id/lightbleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
             android:id="@+id/mediumbleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
-            android:id="@+id/heavybleeding"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
+            android:id="@+id/heavybleeding"
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,59 +73,65 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dancing"
             android:text="Cramps: "
+            android:paddingLeft="4dp"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/nocramp"
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/lightcramp"
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/mediumcramp"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/heavycramp"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
     </LinearLayout>
 
     <DatePicker
+        android:id="@+id/datepicker"
+        android:theme="@style/NumberPickerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datepicker"
+        android:paddingTop="5dp"
         android:calendarViewShown="false"
+        android:headerBackground="@color/period"
         android:spinnersShown="true" />
 
     <Button
+        android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/confirm"
+        android:background="@color/period"
         android:text="OK"
-        android:textColor="@color/black"/>
-
+        android:fontFamily="@font/dancing"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>

@@ -10,12 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:fontFamily="@font/dancing"
+            android:text="              None   Light   Medium   Heavy"
             android:textColor="@color/white"
-            android:text="              None      Light      Medium      Heavy"/>
+            android:textSize="20dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,37 +26,42 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/dancing"
             android:textColor="@color/white"
             android:text="Bleeding: "/>
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/nobleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
             android:id="@+id/lightbleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
             android:id="@+id/mediumbleeding"
-            android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
-            android:id="@+id/heavybleeding"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
+
+        <ImageView
+            android:id="@+id/heavybleeding"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,51 +69,54 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dancing"
             android:text="Cramps: "
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/nocramp"
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/lightcramp"
-            android:layout_width="wrap_content"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/mediumcramp"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
 
         <ImageView
             android:id="@+id/heavycramp"
-            android:layout_width="wrap_content"
+            android:layout_width="58dp"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@drawable/ic_action_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:src="@drawable/ic_action_name" />
     </LinearLayout>
 
     <Button
+        android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/confirm"
+        android:background="@color/period"
+        android:fontFamily="@font/dancing"
         android:text="OK"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
 
 
