@@ -118,6 +118,7 @@ public class Home extends Fragment {
             final SharedPreferences.Editor editor = data.edit();
             this.show();
             ok = this.findViewById(R.id.confirm);
+            //Adjust drawables as icons are selected and store the selected values for bleeding and cramps
             b0.setOnClickListener(new View.OnClickListener() {
                 //@Override
                 public void onClick(View v) {
@@ -200,7 +201,6 @@ public class Home extends Fragment {
 
                     //close pop-up
                     MainActivity.savePeriodInList(data, Calendar.DAY_OF_MONTH, Calendar.MONTH, Calendar.YEAR, bleeding, cramps);
-                    //System.out.println("WTF" + Calendar.getInstance().toString());
                     close();
 
                 }
@@ -213,17 +213,20 @@ public class Home extends Fragment {
         }
         private void ToggleB()
         {
+            //takes care of levels of bleeding being selected or deselected
             previousb.setImageResource(getCorrespondingImage(previousb, false));
             currentb.setImageResource(getCorrespondingImage(currentb, true));
         }
         private void ToggleC()
         {
+            //takes care of levels of cramps being selected or deselected
             previousc.setImageResource(getCorrespondingImage(previousc, false));
             currentc.setImageResource(getCorrespondingImage(currentc, true));
         }
 
         private int getCorrespondingImage(ImageView a, boolean current)
         {
+            //returns the drawable ImageView a should change to
             switch (a.getId()){
                 case R.id.nocramp: if (current)return R.drawable.circle1; return R.drawable.face1;
                 case R.id.lightcramp: if (current)return R.drawable.circle2; return R.drawable.face2;

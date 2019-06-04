@@ -65,6 +65,7 @@ public class Statistics extends Fragment {
 
     public List<Calendar> sortDates(SharedPreferences data)
     {
+        //returns a chronologically sorted list of starting dates of the 10 most recent periods
         List<Calendar> list = new ArrayList<>();
         for(int i = 0; i < 10; i++)
         {

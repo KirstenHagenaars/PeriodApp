@@ -56,12 +56,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.appbar);
         setActionBar(toolbar);
+
+        //The initialization of our bottom navigation bar, using the fragmentmanager fm
         fm.beginTransaction().add(R.id.main_container, calendar, "4").hide(calendar).commit();
         fm.beginTransaction().add(R.id.main_container, notifications, "3").hide(notifications).commit();
         fm.beginTransaction().add(R.id.main_container, statistics, "2").hide(statistics).commit();
         fm.beginTransaction().add(R.id.main_container, home, "1").commit();
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
 
+        //A listener to handle clicks on the navigation bar and change between fragments
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -107,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*If the user opens the app for the first time, a pop-up appears where the user enters
+        //her average cycle length and period length and the date of the start of the most recent
+        period. These will serve as starting values*/
         if (!data.contains(index)||data.getInt("cyclelength", 0)==0 || data.getInt("periodlength", 0)==0) {
             new InitialDialog(MainActivity.this);
         }
@@ -114,21 +120,31 @@ public class MainActivity extends AppCompatActivity {
 
     public static int getCyclelength(SharedPreferences data)
     {
+        //retrieves the cycle length from the SharedPreferences
         return data.getInt("cyclelength", 28);
     }
 
     public static void setCycleLength(SharedPreferences data)
     {
+        //updates the average cycle length
         //TODO change average of the cycle length
+    }
+
+    public static boolean lastDayOfMonth(int day, int month)
+    {
+        return true; //TODO
     }
 
     public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year)
     {
-        //get previous date and check if its yesterday
-        Calendar dateRecentPeriod = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
-        //TODO check if user was bleeding yesterday
-//        if (bleeding)
-//            return false;
+        int index = getIndex(data) -1;
+        if (data.getInt("day"+ index, 0)+1 == day && data.getInt("month"+ index, 0) == month
+                && data.getInt("year"+ index, 0) == year||day == 0 && lastDayOfMonth(data.getInt("day"+
+                index, 0), data.getInt("month"+ index, 0))&& data.getInt("month"+ index, 0)+1
+                == month && data.getInt("year"+ index, 0) == year || day == 0 && lastDayOfMonth(data.getInt("day"+
+                index, 0), data.getInt("month"+ index, 0))&& data.getInt("month"+ index, 0)== 11
+                && data.getInt("year"+ index, 0)+1 == year )
+            return false;
         return true;
     }
 
@@ -180,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setCycleInitial (int c)
     {
+        //stores the initial cycle length in SharedPreferences data
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
         editor.putInt("cyclelength", c);
@@ -188,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setPeriodInitial(int d)
     {
+        //stores the initial period length in SharedPreferences data
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
         editor.putInt("periodlength", d);
@@ -200,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class InitialDialog extends Dialog {
+        //pop-up that appears when the app is opened for the first time, requests the user to enter data
         public EditText cycle, period;
         public DatePicker datePicker;
         public Button ok;

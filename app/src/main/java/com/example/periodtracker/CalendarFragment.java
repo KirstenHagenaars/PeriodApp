@@ -103,7 +103,7 @@ public class CalendarFragment extends Fragment {
         Calendar dateRecentPeriod = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
         pastperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "Your recent have your period"));
         //TODO something goes wrong with the marking, its marking in the past?
-        int cycleLength = 86400000* MainActivity.getCyclelength(data);
+        int cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
         for(int i = 1; i <= 5; i++)
         {
             pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()+(i*cycleLength), "You will have your period"));
@@ -117,6 +117,7 @@ public class CalendarFragment extends Fragment {
         public Button ok;    //confirmation button
         public DatePicker datepicker;
 
+        //pop-up for entering data about a chosen date
         ImageView b0, b1, b2, b3, c0, c1, c2, c3, previousb, currentb, previousc, currentc;
 
         public PeriodEnter(@NonNull Context context) {
@@ -139,6 +140,7 @@ public class CalendarFragment extends Fragment {
             final SharedPreferences data = context.getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = data.edit();
             this.show();
+            //Adjust drawables as icons are selected and store the selected values for bleeding and cramps
             ok = this.findViewById(R.id.confirm);
             b0.setOnClickListener(new View.OnClickListener() {
                 //@Override
@@ -232,17 +234,20 @@ public class CalendarFragment extends Fragment {
         }
         private void ToggleB()
         {
+            //takes care of levels of bleeding being selected or deselected
             previousb.setImageResource(getCorrespondingImage(previousb, false));
             currentb.setImageResource(getCorrespondingImage(currentb, true));
         }
         private void ToggleC()
         {
+            //takes care of levels of cramps being selected or deselected
             previousc.setImageResource(getCorrespondingImage(previousc, false));
             currentc.setImageResource(getCorrespondingImage(currentc, true));
         }
 
         private int getCorrespondingImage(ImageView a, boolean current)
         {
+            //returns the drawable ImageView a should change to
             switch (a.getId()){
                 case R.id.nocramp: if (current)return R.drawable.circle1; return R.drawable.face1;
                 case R.id.lightcramp: if (current)return R.drawable.circle2; return R.drawable.face2;
