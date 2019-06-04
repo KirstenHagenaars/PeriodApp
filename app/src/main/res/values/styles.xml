@@ -41,4 +41,16 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
+    <style name="CycleLengthStyle">
+        <item name="android:fontFamily">@font/dancing</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="PeriodLengthStyle">
+        <item name="android:fontFamily">@font/dancing</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
 </resources>
