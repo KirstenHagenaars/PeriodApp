@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/blood1" />
 
         <ImageView
             android:id="@+id/lightbleeding"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/blood2" />
 
         <ImageView
             android:id="@+id/mediumbleeding"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/blood3" />
 
         <ImageView
             android:id="@+id/heavybleeding"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/blood4" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/face1" />
 
         <ImageView
             android:id="@+id/lightcramp"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/face2" />
 
         <ImageView
             android:id="@+id/mediumcramp"
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/face3" />
 
         <ImageView
             android:id="@+id/heavycramp"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_action_name" />
+            android:src="@drawable/face4" />
     </LinearLayout>
 
     <DatePicker

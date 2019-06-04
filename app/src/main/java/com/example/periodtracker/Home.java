@@ -213,13 +213,30 @@ public class Home extends Fragment {
         }
         private void ToggleB()
         {
-            previousb.setImageResource(R.drawable.ic_action_name);
-            currentb.setImageResource(R.drawable.ic_action_name2);
+            previousb.setImageResource(getCorrespondingImage(previousb, false));
+            currentb.setImageResource(getCorrespondingImage(currentb, true));
         }
         private void ToggleC()
         {
-            previousc.setImageResource(R.drawable.ic_action_name);
-            currentc.setImageResource(R.drawable.ic_action_name2);
+            previousc.setImageResource(getCorrespondingImage(previousc, false));
+            currentc.setImageResource(getCorrespondingImage(currentc, true));
+        }
+
+        private int getCorrespondingImage(ImageView a, boolean current)
+        {
+            switch (a.getId()){
+                case R.id.nocramp: if (current)return R.drawable.circle1; return R.drawable.face1;
+                case R.id.lightcramp: if (current)return R.drawable.circle2; return R.drawable.face2;
+                case R.id.mediumcramp: if (current)return R.drawable.circle3; return R.drawable.face3;
+                case R.id.heavycramp: if (current)return R.drawable.circle4; return R.drawable.face4;
+                case R.id.nobleeding: if (current)return R.drawable.blood1circle; return R.drawable.blood1;
+                case R.id.lightbleeding: if (current)return R.drawable.blood2circle; return R.drawable.blood2;
+                case R.id.mediumbleeding: if (current)return R.drawable.blood3circle; return R.drawable.blood3;
+                case R.id.heavybleeding: if (current)return R.drawable.blood4circle; return R.drawable.blood4;
+                default: return R.drawable.face4;
+
+            }
+
         }
     }
 }
