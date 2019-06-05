@@ -39,6 +39,7 @@
         <item name="android:headerDayOfMonthTextAppearance">@font/printclear</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="CycleLengthStyle">
