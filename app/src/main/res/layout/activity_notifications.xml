@@ -8,23 +8,7 @@
     android:background="@color/colorPrimary"
     android:id="@+id/frameLayout">
 
-    <Switch
-        android:id="@+id/switchdaily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="Daily reminder"
-        android:textColor="@color/white"
-        android:theme="@style/Theme.MyTheme"
-        android:switchPadding="33dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311"
-        tools:layout_conversion_absoluteHeight="39dp"
-        tools:layout_conversion_absoluteWidth="272dp" />
+
 
     <TextView
         android:id="@+id/textView2"
@@ -46,13 +30,35 @@
         tools:layout_conversion_absoluteWidth="273dp" />
 
     <Switch
+        android:id="@+id/switchdaily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Daily reminder"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.MyTheme"
+        android:paddingRight="180dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311"
+        tools:layout_conversion_absoluteHeight="39dp"
+        tools:layout_conversion_absoluteWidth="272dp" />
+
+
+    <Switch
         android:id="@+id/switchperiod"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="false"
         android:text="Period reminder"
         android:theme="@style/Theme.MyTheme"
         android:textColor="@color/white"
+        android:paddingRight="180dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
