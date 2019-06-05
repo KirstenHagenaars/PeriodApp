@@ -68,6 +68,34 @@ public class sendNotification extends BroadcastReceiver {
                     .setContentInfo("hoo");
             notificationManager.notify(100,notificationBuilder.build());
         }
+        else if (intent.getAction().equals("PERIODADVANCE_NOTIFICATION"))
+        {
+            notificationBuilder.setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.ic_action_name)
+                    .setTicker("Tutorialspoint")
+                    .setPriority(Notification.PRIORITY_MAX)
+                    .setContentTitle("Period alarm")
+                    .setContentText("Your period is predicted to arrive in 3 days")
+                    .setContentInfo("hoo");
+            notificationManager.notify(100,notificationBuilder.build());
+        }
+        else if (intent.getAction().equals("FERTILE_NOTIFICATION"))
+        {
+            notificationBuilder.setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.ic_action_name)
+                    .setTicker("Tutorialspoint")
+                    .setPriority(Notification.PRIORITY_MAX)
+                    .setContentTitle("Fertility alarm")
+                    .setContentText("Your fertile window is predicted to open now")
+                    .setContentInfo("hoo");
+            notificationManager.notify(100,notificationBuilder.build());
+        }
     }
 }
 

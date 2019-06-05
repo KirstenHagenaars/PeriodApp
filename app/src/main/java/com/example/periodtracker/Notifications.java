@@ -55,6 +55,8 @@ public class Notifications extends Fragment {
         //define the switches
         Switch dailyReminder = (Switch) v.findViewById(R.id.switchdaily);
         Switch periodReminder = (Switch) v.findViewById(R.id.switchperiod);
+        Switch periodAdvanceReminder = (Switch) v.findViewById(R.id.switchperiodadvance);
+        Switch fertileReminder = (Switch) v.findViewById(R.id.switchfertile);
 
         //define a listener for every switch
         dailyReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -66,18 +68,6 @@ public class Notifications extends Fragment {
                     //open pop-up to input daily time
                     //run notification daily
                     new TimePickerDialog(getActivity());
-//                    Intent intent = new Intent(current, sendNotification.class);
-//                    intent.setAction("DAILY_NOTIFICATION");
-//                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-//                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
-//                    Calendar cal = Calendar.getInstance();
-//                    cal.setTimeInMillis(System.currentTimeMillis());
-//
-//                    cal.set(Calendar.HOUR_OF_DAY, hour);
-//                    cal.set(Calendar.MINUTE, min);
-//
-//                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcast);
-
                 }
             }
         });
@@ -94,16 +84,58 @@ public class Notifications extends Fragment {
                     AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
-                    //get predicted period days
+                    //TODO get predicted period days
+                    //cal.set(Calendar.DAY_OF_MONTH, );
                     cal.set(Calendar.HOUR_OF_DAY, 8);
                     cal.set(Calendar.MINUTE, 0);
 
-                    //alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), MainActivity.getCyclelength(data), broadcast);
                 }
             }
 
         });
 
+        periodAdvanceReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.v("Switch State=", "" + isChecked);
+                if (isChecked) {
+                    Intent intent = new Intent(current, sendNotification.class);
+                    intent.setAction("PERIODADVANCE_NOTIFICATION");
+                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(System.currentTimeMillis());
+                    //TODO get predicted period days and substract 3 days
+                    cal.set(Calendar.HOUR_OF_DAY, 8);
+                    cal.set(Calendar.MINUTE, 0);
+
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, broadcast);
+                }
+            }
+        });
+
+        fertileReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.v("Switch State=", "" + isChecked);
+                if (isChecked) {
+                    Intent intent = new Intent(current, sendNotification.class);
+                    intent.setAction("FERTILE_NOTIFICATION");
+                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(System.currentTimeMillis());
+                    //TODO get first date of fertile window
+                    cal.set(Calendar.HOUR_OF_DAY, 8);
+                    cal.set(Calendar.MINUTE, 0);
+
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, broadcast);
+                }
+            }
+        });
 
         return v;
     }
