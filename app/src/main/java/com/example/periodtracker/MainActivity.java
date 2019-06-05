@@ -143,15 +143,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year)
     {
-        int index = getIndex(data) -1;
-        if (data.getInt("day"+ index, 0)+1 == day && data.getInt("month"+ index, 0) == month
-                && data.getInt("year"+ index, 0) == year||day == 0 && lastDayOfMonth(data.getInt("day"+
-                index, 0), data.getInt("month"+ index, 0))&& data.getInt("month"+ index, 0)+1
-                == month && data.getInt("year"+ index, 0) == year || day == 0 && lastDayOfMonth(data.getInt("day"+
-                index, 0), data.getInt("month"+ index, 0))&& data.getInt("month"+ index, 0)== 11
-                && data.getInt("year"+ index, 0)+1 == year )
+        //int index = getIndex(data) -1;
+        Calendar last = Statistics.recentDate(data);
+        Calendar saving = Calendar.getInstance();
+        saving.set(year, month, day);
+        int diff = Math.round(last.getTimeInMillis()-saving.getTimeInMillis());
+        int cyclelenght = getCyclelength(data);
+        if(diff >= cyclelenght/2)
+            return true;
+        else
             return false;
-        return true;
     }
 
     //When we save the date we save the month as it comes. So January will be 0, February 1 and so on

@@ -100,7 +100,7 @@ public class CalendarFragment extends Fragment {
         }
         //add first days of periods, 5 periods into the future
         //get recent period and average cycle length
-        Calendar dateRecentPeriod = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        Calendar dateRecentPeriod = Statistics.recentDate(data);
         pastperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "Your recent have your period"));
         //TODO something goes wrong with the marking, its marking in the past?
         long cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
