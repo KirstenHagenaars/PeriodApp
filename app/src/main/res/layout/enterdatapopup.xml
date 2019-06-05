@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:textAlignment="center"
             android:fontFamily="@font/dancing"
             android:textColor="@color/white"
             android:text="Bleeding: "/>
@@ -66,13 +67,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:layout_width="72dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancing"
             android:text="Cramps: "
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
@@ -116,7 +119,11 @@
         android:background="@color/period"
         android:fontFamily="@font/dancing"
         android:text="OK"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:scaleY="0.8"
+        android:layout_gravity="center"/>
 
 
 

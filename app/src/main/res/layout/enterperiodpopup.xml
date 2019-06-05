@@ -43,7 +43,8 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/blood1" />
+            android:src="@drawable/blood1"
+            />
 
         <ImageView
             android:id="@+id/lightbleeding"
@@ -72,7 +73,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:layout_width="83dp"
@@ -119,10 +121,10 @@
     <DatePicker
         android:id="@+id/datepicker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="383dp"
         android:calendarViewShown="false"
         android:headerBackground="@color/period"
-        android:paddingTop="5dp"
+        android:paddingTop="7dp"
         android:spinnersShown="true"
         android:theme="@style/NumberPickerStyle" />
 
@@ -134,7 +136,8 @@
         android:background="@color/period"
         android:fontFamily="@font/dancing"
         android:text="OK"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"/>
 
 
 </LinearLayout>
