@@ -65,13 +65,17 @@ public class CalendarFragment extends Fragment {
                 //TODO check with list whether event is there and show data of event
                 //Context context = getContext();
 
-                if(dateClicked.equals(last))
+                if(isInPastEvents(data, dateClicked.getTime()))
                 {
-                    Toast.makeText(getContext(), "Date of period", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "You had your period on this date", Toast.LENGTH_SHORT).show();
+                }
+                else if(isInFutureEvents(data, dateClicked.getTime()))
+                {
+                    Toast.makeText(getContext(), "You will have your period", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "You're free!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "You will not be suffering", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -98,21 +102,48 @@ public class CalendarFragment extends Fragment {
             Calendar date = MainActivity.getDate(data, i);
             pastperiod.add(new Event(Color.GREEN, date.getTimeInMillis(), "You had your period"));
         }
+        return pastperiod;
+    }
+
+    public List<Event> futureDates(SharedPreferences data)
+    {
         //add first days of periods, 5 periods into the future
         //get recent period and average cycle length
+        List<Event> futureperiod = new ArrayList<>();
         Calendar dateRecentPeriod = Statistics.recentDate(data);
-        pastperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "Your recent have your period"));
-        //TODO something goes wrong with the marking, its marking in the past?
+        //futureperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "You had your period"));
         long cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
         for(long i = 1; i <= 5; i++)
         {
             for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
             {
                 //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
-                pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), "You will have your period"));
+                futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), "You will have your period"));
             }
         }
-        return pastperiod;
+        return futureperiod;
+    }
+
+    public boolean isInPastEvents(SharedPreferences data, long time)
+    {
+        List<Event> past = enterPastEvents(data);
+        for (Event e : past)
+        {
+            if(e.getTimeInMillis()==time)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isInFutureEvents(SharedPreferences data, long time)
+    {
+        List<Event> future = futureDates(data);
+        for (Event e : future)
+        {
+            if(e.getTimeInMillis()== time)
+                return true;
+        }
+        return false;
     }
 
     public class PeriodEnter extends Dialog {
