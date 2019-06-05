@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment home = new Home();
     final Fragment calendar = new CalendarFragment();
     final Fragment statistics = new Statistics();
-    final Fragment notifications = new Notifications();
+    final Fragment notifications = new Notifications(this);
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
     static final String pref = "data";
