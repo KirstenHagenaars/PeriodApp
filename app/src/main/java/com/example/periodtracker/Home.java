@@ -61,7 +61,7 @@ public class Home extends Fragment {
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
         final ProgressBar progress = homeFragment.findViewById(R.id.progressBar);
         Calendar today = Calendar.getInstance();
-        Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        Calendar last = Statistics.recentDate(data);
         final int startcycle = data.getInt("cyclelength", 0);
         System.out.println("WTF"+last.toString());
 
