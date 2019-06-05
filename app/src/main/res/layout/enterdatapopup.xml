@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:text="              None   Light   Medium   Heavy"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:textColor="@color/white"
             android:text="Bleeding: "/>
 
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:text="Cramps: "
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/period"
-        android:fontFamily="@font/dancing"
+        android:fontFamily="@font/printclear"
         android:text="OK"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"

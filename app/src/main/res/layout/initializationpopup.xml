@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:textColor="@color/white"
             android:text="Average cycle length: "/>
         <EditText
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:textColor="@color/white"
             android:text="Average period length: "/>
         <EditText
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:textColor="@color/white"
             android:text="Last period: "/>
 
@@ -56,7 +56,7 @@
             android:theme="@style/NumberPickerStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/datepicker"
+            android:id="@+id/printclear"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
             android:spinnersShown="true" />
@@ -68,7 +68,7 @@
         android:text="OK"
         android:textColor="@color/black"
         android:background="@color/period"
-        android:fontFamily="@font/dancing"/>
+        android:fontFamily="@font/printclear"/>
 
 
 </LinearLayout>
