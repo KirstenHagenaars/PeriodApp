@@ -7,31 +7,17 @@
     android:gravity="center"
     android:orientation="vertical">
     <!-- For some reason width needs to be hardcoded otherwise it is too slim -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dancing"
-            android:text="              None   Light   Medium   Heavy"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:paddingLeft="10dp"
             android:text="Bleeding: "
             android:textColor="@color/white"
@@ -79,7 +65,7 @@
         <TextView
             android:layout_width="83dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dancing"
+            android:fontFamily="@font/printclear"
             android:paddingLeft="10dp"
             android:text="Cramps: "
             android:textColor="@color/white"
@@ -134,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@color/period"
-        android:fontFamily="@font/dancing"
+        android:fontFamily="@font/printclear"
         android:text="OK"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
