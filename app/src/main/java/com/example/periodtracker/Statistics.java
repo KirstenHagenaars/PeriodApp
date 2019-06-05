@@ -31,6 +31,7 @@ public class Statistics extends Fragment {
         TextView cyclelength =  statsFragment.findViewById(R.id.cyclelength);
         TextView periodlength = statsFragment.findViewById(R.id.periodlength);
         TextView date = statsFragment.findViewById(R.id.initdate);
+        System.out.println("FUUCK" + MainActivity.printDate(MainActivity.getDate(data, MainActivity.getIndex(data)-1)));
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
         Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
@@ -69,7 +70,8 @@ public class Statistics extends Fragment {
         List<Calendar> list = new ArrayList<>();
         for(int i = 0; i < 10; i++)
         {
-            list.add(MainActivity.getDate(data, i));
+            if(data.contains("index" + i));
+                list.add(MainActivity.getDate(data, i));
         }
         list.sort(new Comparator<Calendar>() {
             @Override

@@ -58,6 +58,11 @@ public class CalendarFragment extends Fragment {
         {
             calendar.addEvent(e);
         }
+        List<Event> predictions = futureDates(data);
+        for(Event e : predictions)
+        {
+            calendar.addEvent(e);
+        }
 
         calendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -65,7 +70,7 @@ public class CalendarFragment extends Fragment {
                 //TODO check with list whether event is there and show data of event
                 //Context context = getContext();
 
-                if(isInPastEvents(data, dateClicked.getTime()))
+                if(isInPastEvents(data, dateClicked.toString()))
                 {
                     Toast.makeText(getContext(), "You had your period on this date", Toast.LENGTH_SHORT).show();
                 }
@@ -75,7 +80,7 @@ public class CalendarFragment extends Fragment {
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "You will not be suffering", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "It's a good day", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -124,12 +129,13 @@ public class CalendarFragment extends Fragment {
         return futureperiod;
     }
 
-    public boolean isInPastEvents(SharedPreferences data, long time)
+    public boolean isInPastEvents(SharedPreferences data, String time)
     {
+        System.out.println("HELP PAST");
         List<Event> past = enterPastEvents(data);
         for (Event e : past)
         {
-            if(e.getTimeInMillis()==time)
+            if(e.toString() == time)
                 return true;
         }
         return false;
@@ -137,6 +143,7 @@ public class CalendarFragment extends Fragment {
 
     public boolean isInFutureEvents(SharedPreferences data, long time)
     {
+        System.out.println("Help future");
         List<Event> future = futureDates(data);
         for (Event e : future)
         {
@@ -258,7 +265,7 @@ public class CalendarFragment extends Fragment {
                     }
 
                     //close pop-up
-                    MainActivity.savePeriodInList(data, datepicker.getDayOfMonth(), datepicker.getMonth(), datepicker.getYear(), bleeding, cramps);
+                    MainActivity.savePeriodInList(data, datepicker.getDayOfMonth(), datepicker.getMonth(), datepicker.getYear(), bleeding, cramps, false);
                     close();
                 }
             });

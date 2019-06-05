@@ -200,7 +200,7 @@ public class Home extends Fragment {
                     }
 
                     //close pop-up
-                    MainActivity.savePeriodInList(data, Calendar.DAY_OF_MONTH, Calendar.MONTH, Calendar.YEAR, bleeding, cramps);
+                    MainActivity.savePeriodInList(data, Calendar.DAY_OF_MONTH, Calendar.MONTH, Calendar.YEAR, bleeding, cramps, false);
                     close();
 
                 }

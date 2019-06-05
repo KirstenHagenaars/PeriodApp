@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         period. These will serve as starting values*/
         if (!data.contains(index)||data.getInt("cyclelength", 0)==0 || data.getInt("periodlength", 0)==0) {
             new InitialDialog(MainActivity.this);
+            editor.putInt("index", 1);
+            editor.apply();
         }
     }
 
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         return true; //TODO
     }
 
-    public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year)
+    public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year, boolean init)
     {
         //int index = getIndex(data) -1;
         Calendar last = Statistics.recentDate(data);
@@ -149,16 +151,16 @@ public class MainActivity extends AppCompatActivity {
         saving.set(year, month, day);
         int diff = Math.round(last.getTimeInMillis()-saving.getTimeInMillis());
         int cyclelenght = getCyclelength(data);
-        if(diff >= cyclelenght/2)
+        if(diff >= cyclelenght/2 || init)
             return true;
         else
             return false;
     }
 
     //When we save the date we save the month as it comes. So January will be 0, February 1 and so on
-    public static void savePeriodInList(SharedPreferences data, int day, int month, int year, int bleeding, int cramps)
+    public static void savePeriodInList(SharedPreferences data, int day, int month, int year, int bleeding, int cramps, boolean init)
     {
-        if (firstDayOfPeriod(data, day, month, year))
+        if (firstDayOfPeriod(data, day, month, year, init))
         {
             SharedPreferences.Editor editor = data.edit();
 
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("bleeding" + getIndex(data), bleeding).apply();
             editor.putInt("cramps" + getIndex(data), cramps).apply();
             incrementIndex(data);
+            System.out.println("FUCK" + day + "." + month + "." + year);
             // setCycleLength(data)
         }
 
@@ -240,9 +243,10 @@ public class MainActivity extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Calendar date = Calendar.getInstance();
-                    date.set(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
-                    savePeriodInList(context.getSharedPreferences(pref, Context.MODE_PRIVATE), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear(), 0, 0);
+                    //Calendar date = Calendar.getInstance();
+                    //date.set(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
+                    //System.out.println("HUHU"+ datePicker.getDayOfMonth() + "."+datePicker.getMonth() + "." + datePicker.getYear());
+                    MainActivity.this.savePeriodInList(context.getSharedPreferences(pref, Context.MODE_PRIVATE), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear(), 0, 0, true);
                     MainActivity.this.setCycleInitial(getCycle());
                     MainActivity.this.setPeriodInitial(getPeriod());
                     //MainActivity.this.setDate(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
