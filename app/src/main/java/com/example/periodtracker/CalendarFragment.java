@@ -48,6 +48,8 @@ public class CalendarFragment extends Fragment {
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
         final Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
 
+        date0.setText("Last date: " +  MainActivity.printDate(Statistics.recentDate(data)));
+
         calendar.displayOtherMonthDays(true);
         MainActivity.setToolbarMonth(dateFormatForMonth.format(calendar.getFirstDayOfCurrentMonth()));
         calendar.setUseThreeLetterAbbreviation(true);
@@ -110,6 +112,14 @@ public class CalendarFragment extends Fragment {
             {
                 //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
                 futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000)));
+                Calendar date = Calendar.getInstance();
+                Date d = new Date();
+                d.setTime(dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000));
+                date.setTime(d);
+                if(i==1 && p==0)
+                    date1.setText("First upcoming: " + MainActivity.printDate(date));
+                if(i==2 && p==0)
+                    date2.setText("Second upcoming: " + MainActivity.printDate(date));
             }
         }
         return futureperiod;
