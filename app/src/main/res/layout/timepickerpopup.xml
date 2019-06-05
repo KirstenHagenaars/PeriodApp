@@ -10,26 +10,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:weightSum="2"
         android:layout_marginTop="15dp">
+
         <TimePicker
             android:id="@+id/timePicker1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="330dp"
+            android:layout_height="400dp"
+            android:layout_gravity="start"
+            android:amPmTextColor="@color/white"
+            android:headerBackground="@color/colorPrimary"
+            android:numbersBackgroundColor="@color/period"
+            android:numbersInnerTextColor="@color/white"
+            android:numbersSelectorColor="@color/colorPrimary"
+            android:numbersTextColor="@color/white"
+            android:scrollbarThumbHorizontal="@color/white"
+            android:scrollbarThumbVertical="@color/white"
+            android:theme="@style/NumberPickerStyle"
+            android:timePickerMode="clock" />
     </LinearLayout>
 
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/period"
-        android:fontFamily="@font/printclearbold"
-        android:text="OK"
-        android:textColor="@color/black"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginRight="33dp"
+        android:background="@color/period"
+        android:fontFamily="@font/printclearbold"
         android:scaleY="0.8"
-        android:layout_gravity="center"/>
+        android:text="OK"
+        android:textColor="@color/black" />
 
 
 
