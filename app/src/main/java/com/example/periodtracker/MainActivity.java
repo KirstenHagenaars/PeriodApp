@@ -124,6 +124,12 @@ public class MainActivity extends AppCompatActivity {
         return data.getInt("cyclelength", 28);
     }
 
+    public static int getPeriodlength(SharedPreferences data)
+    {
+        //retrieves the cycle length from the SharedPreferences
+        return data.getInt("periodlength", 5);
+    }
+
     public static void setCycleLength(SharedPreferences data)
     {
         //updates the average cycle length
