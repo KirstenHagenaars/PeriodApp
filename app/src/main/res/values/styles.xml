@@ -34,7 +34,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="NumberPickerStyle">
-        <item name="android:fontFamily">@font/dancing</item>
+        <item name="android:fontFamily">@font/printclear</item>
         <item name="android:colorControlActivated">@color/period</item>
         <item name="android:headerDayOfMonthTextAppearance">@font/printclear</item>
         <item name="android:textColorPrimary">@color/white</item>
@@ -42,13 +42,13 @@
     </style>
 
     <style name="CycleLengthStyle">
-        <item name="android:fontFamily">@font/dancing</item>
+        <item name="android:fontFamily">@font/printclear</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="PeriodLengthStyle">
-        <item name="android:fontFamily">@font/dancing</item>
+        <item name="android:fontFamily">@font/printclear</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>

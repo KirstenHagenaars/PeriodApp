@@ -68,7 +68,7 @@
         android:text="OK"
         android:textColor="@color/black"
         android:background="@color/period"
-        android:fontFamily="@font/printclear"/>
+        android:fontFamily="@font/printclearbold"/>
 
 
 </LinearLayout>
