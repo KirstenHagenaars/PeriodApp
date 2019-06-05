@@ -34,7 +34,7 @@ public class Statistics extends Fragment {
         System.out.println("FUUCK" + MainActivity.printDate(MainActivity.getDate(data, MainActivity.getIndex(data)-1)));
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
-        Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        Calendar last = Statistics.recentDate(data);
         date.setText(date.getText() + MainActivity.printDate(last));
         System.out.println("WHY" + last.toString());
         return statsFragment;
