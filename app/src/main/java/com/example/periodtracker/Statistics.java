@@ -63,7 +63,7 @@ public class Statistics extends Fragment {
         return (int) Math.round(difference.getAsDouble());
     }
 
-    public List<Calendar> sortDates(SharedPreferences data)
+    public static List<Calendar> sortDates(SharedPreferences data)
     {
         //returns a chronologically sorted list of starting dates of the 10 most recent periods
         List<Calendar> list = new ArrayList<>();
@@ -82,5 +82,12 @@ public class Statistics extends Fragment {
             }
         });
         return list;
+    }
+
+    public static Calendar recentDate(SharedPreferences data)
+    {
+        List<Calendar> sorted = sortDates(data);
+        Calendar recent = sorted.get(sorted.size()-1);
+        return recent;
     }
 }

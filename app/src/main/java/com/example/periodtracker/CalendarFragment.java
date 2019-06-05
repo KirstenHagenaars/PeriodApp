@@ -100,13 +100,17 @@ public class CalendarFragment extends Fragment {
         }
         //add first days of periods, 5 periods into the future
         //get recent period and average cycle length
-        Calendar dateRecentPeriod = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        Calendar dateRecentPeriod = Statistics.recentDate(data);
         pastperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "Your recent have your period"));
         //TODO something goes wrong with the marking, its marking in the past?
-        int cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
-        for(int i = 1; i <= 5; i++)
+        long cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
+        for(long i = 1; i <= 5; i++)
         {
-            pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()+(i*cycleLength), "You will have your period"));
+            for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
+            {
+                //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
+                pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), "You will have your period"));
+            }
         }
         return pastperiod;
     }
