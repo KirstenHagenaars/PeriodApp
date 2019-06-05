@@ -106,8 +106,11 @@ public class CalendarFragment extends Fragment {
         long cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
         for(long i = 1; i <= 5; i++)
         {
-            //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past,
-            pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength), "You will have your period"));
+            for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
+            {
+                //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
+                pastperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), "You will have your period"));
+            }
         }
         return pastperiod;
     }
