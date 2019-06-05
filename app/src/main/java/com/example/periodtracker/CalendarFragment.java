@@ -53,7 +53,7 @@ public class CalendarFragment extends Fragment {
         calendar.setUseThreeLetterAbbreviation(true);
         //Event period = new Event(Color.GREEN, last.getTimeInMillis(), "You will have your period");
         //calendar.addEvent(period);
-        List<Event> periods = enterPastEvents(data);
+        final List<Event> periods = enterPastEvents(data);
         for(Event e : periods)
         {
             calendar.addEvent(e);
@@ -67,21 +67,7 @@ public class CalendarFragment extends Fragment {
         calendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                //TODO check with list whether event is there and show data of event
-                //Context context = getContext();
 
-                if(isInPastEvents(data, dateClicked.toString()))
-                {
-                    Toast.makeText(getContext(), "You had your period on this date", Toast.LENGTH_SHORT).show();
-                }
-                else if(isInFutureEvents(data, dateClicked.getTime()))
-                {
-                    Toast.makeText(getContext(), "You will have your period", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getContext(), "It's a good day", Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
@@ -105,7 +91,7 @@ public class CalendarFragment extends Fragment {
         for(int i = 0; i < 10; i++)
         {
             Calendar date = MainActivity.getDate(data, i);
-            pastperiod.add(new Event(Color.GREEN, date.getTimeInMillis(), "You had your period"));
+            pastperiod.add(new Event(Color.GREEN, date.getTimeInMillis(), date.toString()));
         }
         return pastperiod;
     }
@@ -123,34 +109,10 @@ public class CalendarFragment extends Fragment {
             for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
             {
                 //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
-                futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), "You will have your period"));
+                futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000)));
             }
         }
         return futureperiod;
-    }
-
-    public boolean isInPastEvents(SharedPreferences data, String time)
-    {
-        System.out.println("HELP PAST");
-        List<Event> past = enterPastEvents(data);
-        for (Event e : past)
-        {
-            if(e.toString() == time)
-                return true;
-        }
-        return false;
-    }
-
-    public boolean isInFutureEvents(SharedPreferences data, long time)
-    {
-        System.out.println("Help future");
-        List<Event> future = futureDates(data);
-        for (Event e : future)
-        {
-            if(e.getTimeInMillis()== time)
-                return true;
-        }
-        return false;
     }
 
     public class PeriodEnter extends Dialog {
