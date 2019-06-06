@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 import android.support.annotation.NonNull;
 
 public class CalendarFragment extends Fragment {
@@ -96,7 +98,7 @@ public class CalendarFragment extends Fragment {
         for(int i = 0; i < 10; i++)
         {
             Calendar date = MainActivity.getDate(data, i);
-            pastperiod.add(new Event(Color.GREEN, date.getTimeInMillis(), date.toString()));
+            pastperiod.add(new Event(Color.GREEN, date.getTimeInMillis(), "You had your period"));
         }
         return pastperiod;
     }
@@ -107,16 +109,15 @@ public class CalendarFragment extends Fragment {
         List<Event> futureperiod = new ArrayList<>();
         Calendar dateRecentPeriod = Statistics.recentDate(data);
         //get the cyclelength in milliseconds
-        long cycleLength = 86400000* MainActivity.getCyclelength(data);
+        long cycleLength = TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data));
         for(long i = 1; i <= 5; i++)
         {
             for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
             {
-                //dateRecentPeriod.getTimeInMillis()+(i*cycleLength) shows dates in the past, but with a - works somehow
-                futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000), dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000)));
+                futureperiod.add(new Event(Color.RED, dateRecentPeriod.getTimeInMillis()+(i*cycleLength +p*TimeUnit.DAYS.toMillis(1)), "You will have your period"));
                 Calendar date = Calendar.getInstance();
                 Date d = new Date();
-                d.setTime(dateRecentPeriod.getTimeInMillis()-(i*cycleLength -p*86400000));
+                d.setTime(dateRecentPeriod.getTimeInMillis()+(i*cycleLength +p*TimeUnit.DAYS.toMillis(1)));
                 date.setTime(d);
                 if(i==1 && p==0)
                     date1.setText("First upcoming: " + MainActivity.printDate(date));
