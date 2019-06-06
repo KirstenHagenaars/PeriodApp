@@ -35,7 +35,6 @@ public class Notifications extends Fragment {
     Boolean periodReminderChecked;
     Boolean periodAdvanceReminderChecked;
     Boolean fertileReminderChecked;
-    //TODO: notifications are coming in immediately
 
     @SuppressLint("ValidFragment")
     public Notifications(Context current, int hour, int min) {

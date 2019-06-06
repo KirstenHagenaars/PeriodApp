@@ -3,7 +3,6 @@ package com.example.periodtracker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
-import java.util.OptionalDouble;
 import java.util.Random;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
 
 public class Statistics extends Fragment {
+    //button to generate a random tip
     Button randomButton;
 
     public Statistics() {
@@ -36,6 +32,7 @@ public class Statistics extends Fragment {
         TextView blood = statsFragment.findViewById(R.id.blood);
         TextView cramps = statsFragment.findViewById(R.id.cramps);
         averageCycle(data);
+        //set the values for the statistics
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
         Calendar last = Statistics.recentDate(data);
@@ -49,7 +46,7 @@ public class Statistics extends Fragment {
         randomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO get random messages
+                //show a random tip in the textview tips
                 int randomNr = rand.nextInt(20);
                 String text;
                 switch (randomNr){
@@ -129,6 +126,7 @@ public class Statistics extends Fragment {
 
     public void averageCycle(SharedPreferences data)
     {
+        //updates the average cycle of the user
         SharedPreferences.Editor editor = data.edit();
         List<Long> diff = new ArrayList<>();
         List<Calendar> dates = sortDates(data);
@@ -178,6 +176,7 @@ public class Statistics extends Fragment {
 
     public static Calendar recentDate(SharedPreferences data)
     {
+        //returns the date the most recent period started
         List<Calendar> sorted = sortDates(data);
         Calendar recent = sorted.get(sorted.size()-1);
         return recent;
