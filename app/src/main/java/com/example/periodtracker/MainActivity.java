@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment calendar = new CalendarFragment();
     final Fragment statistics = new Statistics();
     final Fragment notifications = new Notifications(this, 21,0);
-    //
+    //the fragment manager enables switching between fragments
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
     static final String pref = "data";
@@ -135,13 +135,10 @@ public class MainActivity extends AppCompatActivity {
         return data.getInt("periodlength", 5);
     }
 
-    public static boolean lastDayOfMonth(int day, int month)
-    {
-        return true; //TODO
-    }
 
     public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year, boolean init)
     {
+        //returns true if day is the first day of the period, according to the data saved
         Calendar last = Statistics.recentDate(data);
         Calendar saving = Calendar.getInstance();
         saving.set(year, month, day);
@@ -157,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
     //When we save the date we save the month as it comes. So January will be 0, February 1 and so on
     public static void savePeriodInList(SharedPreferences data, int day, int month, int year, int bleeding, int cramps, boolean init)
     {
+        //save the new entered first day of a period
         if (firstDayOfPeriod(data, day, month, year, init))
         {
             SharedPreferences.Editor editor = data.edit();
@@ -177,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static void incrementIndex(SharedPreferences data){
         SharedPreferences.Editor editor = data.edit();
-        if(getIndex(data)+1 > 10)//so we always ony´ly save the 10 most recent events
+        //we always only save the 10 most recent events
+        if(getIndex(data)+1 > 10)
             editor.putInt("index", 0);
         else
             editor.putInt("index", getIndex(data)+1);
@@ -238,11 +237,12 @@ public class MainActivity extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //save the entered data
                     MainActivity.this.savePeriodInList(context.getSharedPreferences(pref, Context.MODE_PRIVATE), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear(), 0, 0, true);
                     MainActivity.this.setCycleInitial(getCycle());
                     MainActivity.this.setPeriodInitial(getPeriod());
                     InitialDialog.this.dismiss();
-
+                    //close the pop-up
                     bottomNavigation.setSelectedItemId(bottomNavigation.getSelectedItemId());
                     MainActivity.this.findViewById(R.id.main_container).invalidate();
                 }
