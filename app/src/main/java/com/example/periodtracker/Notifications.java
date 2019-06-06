@@ -22,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Notifications extends Fragment {
     Context current;
@@ -36,7 +37,6 @@ public class Notifications extends Fragment {
     Boolean periodAdvanceReminderChecked;
     Boolean fertileReminderChecked;
     //TODO: notifications are coming in immediately
-    //TODO: get date of first predicted period
 
     @SuppressLint("ValidFragment")
     public Notifications(Context current, int hour, int min) {
@@ -109,7 +109,9 @@ public class Notifications extends Fragment {
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days
-                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period);
+                    Calendar predicted = Statistics.recentDate(data);
+                    predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data));
+                    cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
                     cal.set(Calendar.HOUR_OF_DAY, 10);
                     cal.set(Calendar.MINUTE, 45);
 
@@ -140,7 +142,9 @@ public class Notifications extends Fragment {
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days and substract 3 days
-                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period-3);
+                    Calendar predicted = Statistics.recentDate(data);
+                    predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data) - 3);
+                    cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
                     cal.set(Calendar.HOUR_OF_DAY, 10);
                     cal.set(Calendar.MINUTE, 45);
 
@@ -170,7 +174,9 @@ public class Notifications extends Fragment {
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get first date of fertile window
-                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted fertilewindow);
+                    Calendar predicted = Statistics.recentDate(data);
+                    predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data)/2 - 4);
+                    cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
                     cal.set(Calendar.HOUR_OF_DAY, 10);
                     cal.set(Calendar.MINUTE, 45);
 
