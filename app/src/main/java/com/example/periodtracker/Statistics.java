@@ -48,7 +48,7 @@ public class Statistics extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO get random messages
-                int randomNr = rand.nextInt(15);
+                int randomNr = rand.nextInt(20);
                 String text;
                 switch (randomNr){
                     case 0: text = "Exercising and stretching loosens up your muscles and eases the pain."; break;
@@ -67,6 +67,11 @@ public class Statistics extends Fragment {
                     case 13: text = "Don’t use soaps or vaginal hygiene products, since it can kill the good bacteria, making way for infections."; break;
                     case 14: text = "If you bled your sheet use of very cold water helps to take out blood stains."; break;
                     case 15: text = "Keep track of your periods yourself or use the app. "; break;
+                    case 16: text = "Rub your lower tummy, that helps relax the muscles."; break;
+                    case 17: text = "Women with excess body fat tend to have a higher level of estrogen, making it harder to ovulate normally."; break;
+                    case 18: text = "If you're pregnant or thinking about getting pregnant: don't smoke or be around secondhand smoke, don't drink, and get your rest."; break;
+                    case 19: text = "Get a quality sleep. Hot, cold and draughty rooms can seriously impact on your sleep. 16-18°C (60-65°F) is thought to be an ideal temperature in a bedroom."; break;
+                    case 20: text = "There are many ways you can relax before bed. Try running  a warm bubble bath around an hour before bedtime, thus triggering the sleep mechanism."; break;
                     default: text = "Tap to get a useful tip!"; break;
                 }
                 tips.setText(text);

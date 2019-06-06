@@ -73,7 +73,7 @@
             android:layout_marginLeft="15dp"
             android:background="@color/period"
             android:fontFamily="@font/printclearbold"
-            android:textSize="20sp"
-            android:text="Tip!" />
+            android:text="Tip!"
+            android:textSize="20sp" />
 </LinearLayout>
 </FrameLayout>
