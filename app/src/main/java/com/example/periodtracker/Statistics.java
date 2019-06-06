@@ -33,11 +33,15 @@ public class Statistics extends Fragment {
         TextView cyclelength =  statsFragment.findViewById(R.id.cyclelength);
         TextView periodlength = statsFragment.findViewById(R.id.periodlength);
         TextView date = statsFragment.findViewById(R.id.initdate);
+        TextView blood = statsFragment.findViewById(R.id.blood);
+        TextView cramps = statsFragment.findViewById(R.id.cramps);
         averageCycle(data);
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
         Calendar last = Statistics.recentDate(data);
         date.setText(date.getText() + MainActivity.printDate(last));
+        blood.setText("Average bleeding: " + averageBlood(data));
+        cramps.setText("Average cramps: " + averageCramps(data));
 
         final TextView tips = statsFragment.findViewById(R.id.tips);
         final Random rand = new Random();
@@ -76,6 +80,41 @@ public class Statistics extends Fragment {
             }
         });
         return statsFragment;
+    }
+
+    public int averageBlood(SharedPreferences data)
+    {
+        int blood = 0;
+        List<Integer> b = new ArrayList<>();
+        for(int i = 0; i < 10; i++)
+        {
+            int x = data.getInt("bleeding"+i, 0);
+            if(x != 0)
+                b.add(x);
+        }
+        for(Integer i:b)
+            blood += i.intValue();
+        if(b.size()>0)
+            return blood/b.size();
+        else
+            return 0;
+    }
+
+    public int averageCramps(SharedPreferences data)
+    {
+        int cramps = 0;
+        List<Integer> b = new ArrayList<>();
+        for(int i = 0; i < 10; i++)
+        {
+            int x = data.getInt("cramps"+i, 0);
+            if(x != 0)
+                b.add(x);
+        }
+        for(Integer i:b)
+            cramps += i.intValue();
+        if(b.size()>0)
+            return cramps/b.size();
+        else return 0;
     }
 
     static public int getCycleLength(SharedPreferences data)

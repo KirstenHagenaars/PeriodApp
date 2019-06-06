@@ -30,6 +30,8 @@ import static android.app.PendingIntent.getActivity;
 "month"
 "year"
 "periods"
+bleeding
+cramps
  */
 
 public class MainActivity extends AppCompatActivity {
