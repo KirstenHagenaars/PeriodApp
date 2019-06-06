@@ -50,8 +50,22 @@ public class Statistics extends Fragment {
                 int randomNr = rand.nextInt(50);
                 String text;
                 switch (randomNr){
-                    case 0: text = "hello"; break;
-                    case 1: text = "hello"; break;
+                    case 0: text = "Exercising and stretching loosen up your muscles and eases the pain."; break;
+                    case 1: text = "Vitamin B1 or magnesium supplements may reduce cramps, bloating and other PMS symptoms. Dark chocolate is a good source of this."; break;
+                    case 2: text = "A warm bath or a heating pad on your belly or back reduces the effects of your menstrual cramps."; break;
+                    case 3: text = "Half of tea spoon of ginger powder during the first 3 or 4 days of your period is an effective treatment for painful periods."; break;
+                    case 4: text = "Vitamin D may help regulate menstruation."; break;
+                    case 5: text = "Half of tea spoon of ginger powder during the first 3 or 4 days of your period is an effective treatment for painful periods."; break;
+                    case 6: text = "Caffeine can cause your body to retain more water, resulting in a nasty bloated feeling, and worsen cramps."; break;
+                    case 7: text = "Orgasms help alleviate cramps because sends a huge rush of blood to your lower abdomen and releases oxytocin, which can help your uterus relax."; break;
+                    case 8: text = "Drink more water to replace lost fluids and avoid alcohol which promotes dehydration."; break;
+                    case 9: text = "Avoiding trans-fatty acids like fries, cookies, crackers, and refined foods including sugar, bread, and pasta may also help relieve painful periods."; break;
+                    case 10: text = "Sipping chamomile tea may help reduce cramps when you menstruate. "; break;
+                    case 11: text = "Salmon has the properties of improving and stabilising your hormones and thus resulting in getting rid of menstruation issues."; break;
+                    case 12: text = "If your periods are not regular try almonds, they are rich in fiber and protein that help balance your hormones."; break;
+                    case 13: text = "Don’t use soaps or vaginal hygiene products, since it can kill the good bacteria making way for infections."; break;
+                    case 14: text = "If you bled your sheet use of very cold water that helps to take out blood stains."; break;
+                    case 15: text = "Keep track of your periods yourself or use the app. "; break;
                     default: text = "Tap to get a useful tip!"; break;
                 }
                 tips.setText(text);
