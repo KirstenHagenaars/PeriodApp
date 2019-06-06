@@ -46,15 +46,12 @@ public class CalendarFragment extends Fragment {
         date2 = (TextView) calendarFragment.findViewById(R.id.date2);
 
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
-        final Calendar last = Statistics.recentDate(data);
 
         date0.setText("Last date: " +  MainActivity.printDate(Statistics.recentDate(data)));
 
         calendar.displayOtherMonthDays(true);
         MainActivity.setToolbarMonth(dateFormatForMonth.format(calendar.getFirstDayOfCurrentMonth()));
         calendar.setUseThreeLetterAbbreviation(true);
-        //Event period = new Event(Color.GREEN, last.getTimeInMillis(), "You will have your period");
-        //calendar.addEvent(period);
         final List<Event> periods = enterPastEvents(data);
         for(Event e : periods)
         {

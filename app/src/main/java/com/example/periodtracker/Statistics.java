@@ -33,13 +33,11 @@ public class Statistics extends Fragment {
         TextView cyclelength =  statsFragment.findViewById(R.id.cyclelength);
         TextView periodlength = statsFragment.findViewById(R.id.periodlength);
         TextView date = statsFragment.findViewById(R.id.initdate);
-        System.out.println("FUUCK" + MainActivity.printDate(MainActivity.getDate(data, MainActivity.getIndex(data)-1)));
         averageCycle(data);
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
         Calendar last = Statistics.recentDate(data);
         date.setText(date.getText() + MainActivity.printDate(last));
-        System.out.println("WHY" + last.toString());
 
         final TextView tips = statsFragment.findViewById(R.id.tips);
         final Random rand = new Random();
@@ -135,9 +133,6 @@ public class Statistics extends Fragment {
                 return 0;//then they are equal
             }
         });
-
-        for(Calendar c : list)
-            System.out.println("???" + c.toString());
         //for some reason still contains dates with 0 as values but it's sorted, so I guess we could deal with it
         return list;
     }
@@ -146,7 +141,6 @@ public class Statistics extends Fragment {
     {
         List<Calendar> sorted = sortDates(data);
         Calendar recent = sorted.get(sorted.size()-1);
-        System.out.println("!!!" + recent.toString());
         return recent;
     }
 }

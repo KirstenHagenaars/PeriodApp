@@ -64,10 +64,8 @@ public class Home extends Fragment {
         Calendar today = Calendar.getInstance();
         Calendar last = Statistics.recentDate(data);
         final int startcycle = data.getInt("cyclelength", 0);
-        System.out.println("WTF"+last.toString());
 
         int calculations = startcycle;
-        //Calculations only work once we restart the app...WHY???HELP!!!! Kinda fixed...
         while (calculations != 0 && !last.equals(today)) {
             last.add(Calendar.DAY_OF_MONTH, 1);
             calculations--;
@@ -201,7 +199,6 @@ public class Home extends Fragment {
                     }
                     //close pop-up
                     Calendar today = Calendar.getInstance();
-                    System.out.println("?" + today.get(Calendar.DAY_OF_MONTH) +"-"+ today.get(Calendar.MONTH) +"-"+ today.get(Calendar.YEAR));
                     MainActivity.savePeriodInList(data, today.get(Calendar.DAY_OF_MONTH), today.get(Calendar.MONTH), today.get(Calendar.YEAR), bleeding, cramps, false);
                     close();
 

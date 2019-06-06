@@ -140,15 +140,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static Boolean firstDayOfPeriod(SharedPreferences data, int day, int month, int year, boolean init)
     {
-        //int index = getIndex(data) -1;
         Calendar last = Statistics.recentDate(data);
         Calendar saving = Calendar.getInstance();
         saving.set(year, month, day);
         long millis = saving.getTimeInMillis()-last.getTimeInMillis();
         int diff = (int) TimeUnit.MILLISECONDS.toDays(millis);
-        System.out.println("PLease" + diff);
-        int cyclelenght = getCyclelength(data);
-        if(diff >= cyclelenght/2 || init)
+        int cyclelength = getCyclelength(data);
+        if(diff >= cyclelength/2 || init)
             return true;
         else
             return false;
@@ -167,8 +165,6 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("bleeding" + getIndex(data), bleeding).apply();
             editor.putInt("cramps" + getIndex(data), cramps).apply();
             incrementIndex(data);
-            System.out.println("FUCK" + day + "." + month + "." + year);
-            // setCycleLength(data)
         }
 
     }
@@ -240,13 +236,9 @@ public class MainActivity extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Calendar date = Calendar.getInstance();
-                    //date.set(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
-                    //System.out.println("HUHU"+ datePicker.getDayOfMonth() + "."+datePicker.getMonth() + "." + datePicker.getYear());
                     MainActivity.this.savePeriodInList(context.getSharedPreferences(pref, Context.MODE_PRIVATE), datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear(), 0, 0, true);
                     MainActivity.this.setCycleInitial(getCycle());
                     MainActivity.this.setPeriodInitial(getPeriod());
-                    //MainActivity.this.setDate(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
                     InitialDialog.this.dismiss();
 
                     bottomNavigation.setSelectedItemId(bottomNavigation.getSelectedItemId());
