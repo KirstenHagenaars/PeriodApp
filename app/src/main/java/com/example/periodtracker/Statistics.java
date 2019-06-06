@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,11 +17,12 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.Random;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class Statistics extends Fragment {
-
+    Button randomButton;
 
     public Statistics() {
     }
@@ -37,6 +39,19 @@ public class Statistics extends Fragment {
         Calendar last = Statistics.recentDate(data);
         date.setText(date.getText() + MainActivity.printDate(last));
         System.out.println("WHY" + last.toString());
+        final Random rand = new Random();
+        randomButton = (Button) statsFragment.findViewById(R.id.button2);
+        randomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO get random messages
+                int randomNr = rand.nextInt(50);
+//                switch (randomNr){
+//                    case 0: break;
+//                    case 1: break;
+//                }
+            }
+        });
         return statsFragment;
     }
 
