@@ -44,6 +44,7 @@ public class Home extends Fragment {
     }
 
     private void init(View homeFragment){
+        //set the view of the homefragment
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
         final ProgressBar progress = homeFragment.findViewById(R.id.progressBar);
         Calendar today = Calendar.getInstance();
@@ -56,6 +57,7 @@ public class Home extends Fragment {
             last.add(Calendar.DAY_OF_MONTH, 1);
             calculations--;
         }
+        //set the progressbar
         progress.setMax(startcycle);
         progress.setProgress(calculations);
         TextView test = homeFragment.findViewById(R.id.days);
@@ -105,7 +107,6 @@ public class Home extends Fragment {
             ok = this.findViewById(R.id.confirm);
             //Adjust drawables as icons are selected and store the selected values for bleeding and cramps
             b0.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousb = currentb;
                     currentb = b0;
@@ -113,7 +114,6 @@ public class Home extends Fragment {
                 }
             });
             b1.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousb = currentb;
                     currentb = b1;
@@ -121,7 +121,6 @@ public class Home extends Fragment {
                 }
             });
             b2.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousb = currentb;
                     currentb = b2;
@@ -129,7 +128,6 @@ public class Home extends Fragment {
                 }
             });
             b3.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousb = currentb;
                     currentb = b3;
@@ -137,7 +135,6 @@ public class Home extends Fragment {
                 }
             });
             c0.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousc = currentc;
                     currentc = c0;
@@ -145,7 +142,6 @@ public class Home extends Fragment {
                 }
             });
             c1.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousc = currentc;
                     currentc = c1;
@@ -153,7 +149,6 @@ public class Home extends Fragment {
                 }
             });
             c2.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousc = currentc;
                     currentc = c2;
@@ -161,7 +156,6 @@ public class Home extends Fragment {
                 }
             });
             c3.setOnClickListener(new View.OnClickListener() {
-                //@Override
                 public void onClick(View v) {
                     previousc = currentc;
                     currentc = c3;

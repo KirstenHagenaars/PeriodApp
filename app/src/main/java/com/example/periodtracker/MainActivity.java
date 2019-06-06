@@ -21,8 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
-import static android.app.PendingIntent.getActivity;
 /*
+keys used in SharedPreferences data
 "cycleInitial" --> whether or not initialized
 "cyclelength"
 "periodlength"
@@ -35,10 +35,12 @@ import static android.app.PendingIntent.getActivity;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;
+    //initialize all the fragments
     final Fragment home = new Home();
     final Fragment calendar = new CalendarFragment();
     final Fragment statistics = new Statistics();
     final Fragment notifications = new Notifications(this, 21,0);
+    //
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
     static final String pref = "data";
