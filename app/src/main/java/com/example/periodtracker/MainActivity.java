@@ -19,6 +19,7 @@ import android.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import static android.app.PendingIntent.getActivity;
 /*
@@ -143,7 +144,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar last = Statistics.recentDate(data);
         Calendar saving = Calendar.getInstance();
         saving.set(year, month, day);
-        int diff = Math.round(last.getTimeInMillis()-saving.getTimeInMillis());
+        long millis = saving.getTimeInMillis()-last.getTimeInMillis();
+        int diff = (int) TimeUnit.MILLISECONDS.toDays(millis);
+        System.out.println("PLease" + diff);
         int cyclelenght = getCyclelength(data);
         if(diff >= cyclelenght/2 || init)
             return true;

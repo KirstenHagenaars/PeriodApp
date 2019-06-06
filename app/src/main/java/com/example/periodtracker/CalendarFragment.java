@@ -46,7 +46,7 @@ public class CalendarFragment extends Fragment {
         date2 = (TextView) calendarFragment.findViewById(R.id.date2);
 
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
-        final Calendar last = MainActivity.getDate(data, MainActivity.getIndex(data)-1);
+        final Calendar last = Statistics.recentDate(data);
 
         date0.setText("Last date: " +  MainActivity.printDate(Statistics.recentDate(data)));
 

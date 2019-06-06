@@ -130,10 +130,9 @@ public class Statistics extends Fragment {
                 return 0;//then they are equal
             }
         });
-        /*
+
         for(Calendar c : list)
             System.out.println("???" + c.toString());
-            */
         //for some reason still contains dates with 0 as values but it's sorted, so I guess we could deal with it
         return list;
     }

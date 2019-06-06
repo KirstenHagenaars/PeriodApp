@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TimeZone;
 
 /*
 "cycleInitial" --> whether or not initialized
@@ -198,9 +199,10 @@ public class Home extends Fragment {
                         case R.id.mediumcramp: cramps = 2; break;
                         case R.id.heavycramp: cramps = 3; break;
                     }
-
                     //close pop-up
-                    MainActivity.savePeriodInList(data, Calendar.DAY_OF_MONTH, Calendar.MONTH, Calendar.YEAR, bleeding, cramps, false);
+                    Calendar today = Calendar.getInstance();
+                    System.out.println("?" + today.get(Calendar.DAY_OF_MONTH) +"-"+ today.get(Calendar.MONTH) +"-"+ today.get(Calendar.YEAR));
+                    MainActivity.savePeriodInList(data, today.get(Calendar.DAY_OF_MONTH), today.get(Calendar.MONTH), today.get(Calendar.YEAR), bleeding, cramps, false);
                     close();
 
                 }
@@ -209,6 +211,7 @@ public class Home extends Fragment {
 
         public void close()
         {
+            Home.this.init(getView());
             this.dismiss();
         }
         private void ToggleB()
