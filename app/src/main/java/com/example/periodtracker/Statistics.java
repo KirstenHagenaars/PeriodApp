@@ -39,6 +39,8 @@ public class Statistics extends Fragment {
         Calendar last = Statistics.recentDate(data);
         date.setText(date.getText() + MainActivity.printDate(last));
         System.out.println("WHY" + last.toString());
+
+        final TextView tips = statsFragment.findViewById(R.id.tips);
         final Random rand = new Random();
         randomButton = (Button) statsFragment.findViewById(R.id.button2);
         randomButton.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +48,13 @@ public class Statistics extends Fragment {
             public void onClick(View view) {
                 //TODO get random messages
                 int randomNr = rand.nextInt(50);
-//                switch (randomNr){
-//                    case 0: break;
-//                    case 1: break;
-//                }
+                String text;
+                switch (randomNr){
+                    case 0: text = "hello"; break;
+                    case 1: text = "hello"; break;
+                    default: text = "Tap to get a useful tip!"; break;
+                }
+                tips.setText(text);
             }
         });
         return statsFragment;
