@@ -48,7 +48,7 @@ public class Statistics extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO get random messages
-                int randomNr = rand.nextInt(50);
+                int randomNr = rand.nextInt(15);
                 String text;
                 switch (randomNr){
                     case 0: text = "Exercising and stretching loosen up your muscles and eases the pain."; break;
