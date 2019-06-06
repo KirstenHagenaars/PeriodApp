@@ -4,11 +4,11 @@
     <uses-permission android:name="android.permission.SET_ALARM"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher1"
+        android:icon="@drawable/ladies"
         android:label="@string/app_name"
 
         android:launchMode="singleTop"
-        android:roundIcon="@mipmap/ic_launcher1"
+        android:roundIcon="@drawable/ladies"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".MainActivity">
