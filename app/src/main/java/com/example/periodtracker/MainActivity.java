@@ -132,12 +132,6 @@ public class MainActivity extends AppCompatActivity {
         return data.getInt("periodlength", 5);
     }
 
-    public static void setCycleLength(SharedPreferences data)
-    {
-        //updates the average cycle length
-        //TODO change average of the cycle length
-    }
-
     public static boolean lastDayOfMonth(int day, int month)
     {
         return true; //TODO

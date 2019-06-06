@@ -27,12 +27,29 @@ public class Notifications extends Fragment {
     Context current;
     int hour;
     int min;
+    Switch dailyReminder;
+    Switch periodReminder;
+    Switch periodAdvanceReminder;
+    Switch fertileReminder;
+    Boolean dailyReminderChecked;
+    Boolean periodReminderChecked;
+    Boolean periodAdvanceReminderChecked;
+    Boolean fertileReminderChecked;
+    //TODO: notifications are coming in immediately
+    //TODO: pop-up and notifications reload when fragment is opened
+    //If switch is checked when view is created, ignore
+    //save switch states and check for difference
+    //no longer the same channel TODO
 
     @SuppressLint("ValidFragment")
     public Notifications(Context current, int hour, int min) {
         this.current = current;
         this.hour = hour;
         this.min = min;
+        this.dailyReminderChecked = false;
+        this.periodReminderChecked = false;
+        this.periodAdvanceReminderChecked = false;
+        this.fertileReminderChecked = false;
     }
 
     public Notifications() {
@@ -48,15 +65,16 @@ public class Notifications extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_notifications, container, false);
         //get the current time
 
         //define the switches
-        Switch dailyReminder = (Switch) v.findViewById(R.id.switchdaily);
-        Switch periodReminder = (Switch) v.findViewById(R.id.switchperiod);
-        Switch periodAdvanceReminder = (Switch) v.findViewById(R.id.switchperiodadvance);
-        Switch fertileReminder = (Switch) v.findViewById(R.id.switchfertile);
+        this.dailyReminder = (Switch) v.findViewById(R.id.switchdaily);
+        this.periodReminder = (Switch) v.findViewById(R.id.switchperiod);
+        this.periodAdvanceReminder = (Switch) v.findViewById(R.id.switchperiodadvance);
+        this.fertileReminder = (Switch) v.findViewById(R.id.switchfertile);
 
         //define a listener for every switch
         dailyReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -64,10 +82,17 @@ public class Notifications extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.v("Switch State=", "" + isChecked);
-                if (isChecked) {
+                if (isChecked && !dailyReminderChecked) {
                     //open pop-up to input daily time
                     //run notification daily
+                    dailyReminderChecked = true;
                     new TimePickerDialog(getActivity());
+                }
+                else if (!isChecked)
+                {
+                    dailyReminderChecked = false;
+                    //cancel alarm manager
+                    setDaily(false);
                 }
             }
         });
@@ -77,19 +102,27 @@ public class Notifications extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.v("Switch State=", "" + isChecked);
-                if (isChecked) {
-                    Intent intent = new Intent(current, sendNotification.class);
-                    intent.setAction("PERIOD_NOTIFICATION");
-                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(current, sendNotification.class);
+                intent.setAction("PERIOD_NOTIFICATION");
+                PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                if (isChecked && !periodReminderChecked) {
+                    periodReminderChecked = true;
+
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days
-                    //cal.set(Calendar.DAY_OF_MONTH, );
+                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period);
                     cal.set(Calendar.HOUR_OF_DAY, 8);
                     cal.set(Calendar.MINUTE, 0);
 
-                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), MainActivity.getCyclelength(data), broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                }
+                else if (!isChecked)
+                {
+                    dailyReminderChecked = false;
+                    //cancel alarm manager
+                    alarmManager.cancel(broadcast);
                 }
             }
 
@@ -100,18 +133,27 @@ public class Notifications extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.v("Switch State=", "" + isChecked);
-                if (isChecked) {
-                    Intent intent = new Intent(current, sendNotification.class);
-                    intent.setAction("PERIODADVANCE_NOTIFICATION");
-                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(current, sendNotification.class);
+                intent.setAction("PERIODADVANCE_NOTIFICATION");
+                PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                if (isChecked && !periodAdvanceReminderChecked) {
+                    periodAdvanceReminderChecked = true;
+
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days and substract 3 days
+                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period-3);
                     cal.set(Calendar.HOUR_OF_DAY, 8);
                     cal.set(Calendar.MINUTE, 0);
 
-                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                }
+                else if (!isChecked)
+                {
+                    dailyReminderChecked = false;
+                    //cancel alarm manager
+                    alarmManager.cancel(broadcast);
                 }
             }
         });
@@ -121,18 +163,27 @@ public class Notifications extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.v("Switch State=", "" + isChecked);
-                if (isChecked) {
-                    Intent intent = new Intent(current, sendNotification.class);
-                    intent.setAction("FERTILE_NOTIFICATION");
-                    PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                    AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(current, sendNotification.class);
+                intent.setAction("FERTILE_NOTIFICATION");
+                PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
+                if (isChecked && !fertileReminderChecked) {
+                    fertileReminderChecked = true;
+
                     Calendar cal = Calendar.getInstance();
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get first date of fertile window
+                    //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted fertilewindow);
                     cal.set(Calendar.HOUR_OF_DAY, 8);
                     cal.set(Calendar.MINUTE, 0);
 
-                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                }
+                else if (!isChecked)
+                {
+                    dailyReminderChecked = false;
+                    //cancel alarm manager
+                    alarmManager.cancel(broadcast);
                 }
             }
         });
@@ -140,26 +191,42 @@ public class Notifications extends Fragment {
         return v;
     }
 
+    public void onPause() {
+        Log.v("OnResume", "YEESS");
+        this.dailyReminderChecked = dailyReminder.isChecked();
+        this.periodReminderChecked = periodReminder.isChecked();
+        this.periodAdvanceReminderChecked = periodAdvanceReminder.isChecked();
+        this.fertileReminderChecked = fertileReminder.isChecked();
+        super.onPause();
+    }
 
     private void setTime(int hour, int min) {
         this.hour = hour;
         this.min = min;
-        setDaily();
+        setDaily(true);
     }
 
-    private void setDaily()
+    private void setDaily(Boolean activate)
     {
         Intent intent = new Intent(current, sendNotification.class);
         intent.setAction("DAILY_NOTIFICATION");
         PendingIntent broadcast = PendingIntent.getBroadcast(current.getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) current.getSystemService(Context.ALARM_SERVICE);
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(System.currentTimeMillis());
+        if (activate)
+        {
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(System.currentTimeMillis());
 
-        cal.set(Calendar.HOUR_OF_DAY, hour);
-        cal.set(Calendar.MINUTE, min);
+            cal.set(Calendar.HOUR_OF_DAY, hour);
+            cal.set(Calendar.MINUTE, min);
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcast);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcast);
+        }
+        else
+        {
+            alarmManager.cancel(broadcast);
+        }
+
     }
 
     public class TimePickerDialog extends Dialog {
@@ -182,8 +249,6 @@ public class Notifications extends Fragment {
 
                     //close pop-up
                     setTime(timePicker1.getHour(), timePicker1.getMinute());
-                    Log.v("Hour=", new Integer(hour).toString());
-                    Log.v("Min=", new Integer(min).toString());
                     close();
 
                 }
