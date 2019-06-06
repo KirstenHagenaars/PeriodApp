@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
@@ -47,11 +46,17 @@ public class CalendarFragment extends Fragment {
 
         final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
 
+        //get the date the users previous period started
+        final Calendar last = Statistics.recentDate(data);
+
         date0.setText("Last date: " +  MainActivity.printDate(Statistics.recentDate(data)));
 
         calendar.displayOtherMonthDays(true);
         MainActivity.setToolbarMonth(dateFormatForMonth.format(calendar.getFirstDayOfCurrentMonth()));
         calendar.setUseThreeLetterAbbreviation(true);
+
+        //Add events to the calendar (the dots) to showcase when the user had her period and
+        //when her next 5 periods are predicted
         final List<Event> periods = enterPastEvents(data);
         for(Event e : periods)
         {
@@ -86,6 +91,7 @@ public class CalendarFragment extends Fragment {
 
     public List<Event> enterPastEvents(SharedPreferences data)
     {
+        //put the days the user had her period in a list of events and return that list
         List<Event> pastperiod = new ArrayList<>();
         for(int i = 0; i < 10; i++)
         {
@@ -97,12 +103,11 @@ public class CalendarFragment extends Fragment {
 
     public List<Event> futureDates(SharedPreferences data)
     {
-        //add first days of periods, 5 periods into the future
-        //get recent period and average cycle length
+        //put the next 5 predicted periods in a list of events and return that list
         List<Event> futureperiod = new ArrayList<>();
         Calendar dateRecentPeriod = Statistics.recentDate(data);
-        //futureperiod.add(new Event(Color.YELLOW, dateRecentPeriod.getTimeInMillis(), "You had your period"));
-        long cycleLength = 86400000* MainActivity.getCyclelength(data); //cyclelength in milliseconds
+        //get the cyclelength in milliseconds
+        long cycleLength = 86400000* MainActivity.getCyclelength(data);
         for(long i = 1; i <= 5; i++)
         {
             for (long p = 0; p < MainActivity.getPeriodlength(data); p++)
@@ -149,7 +154,6 @@ public class CalendarFragment extends Fragment {
             currentc = this.findViewById(R.id.nocramp);
             datepicker = this.findViewById(R.id.datepicker);
             final SharedPreferences data = context.getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
-            final SharedPreferences.Editor editor = data.edit();
             this.show();
             //Adjust drawables as icons are selected and store the selected values for bleeding and cramps
             ok = this.findViewById(R.id.confirm);
