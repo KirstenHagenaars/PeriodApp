@@ -20,6 +20,7 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class Notifications extends Fragment {
     Context current;
@@ -109,10 +110,10 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data));
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 10);
-                    cal.set(Calendar.MINUTE, 45);
+                    cal.set(Calendar.HOUR_OF_DAY, 18);
+                    cal.set(Calendar.MINUTE, 21);
                     //repeat the alarm every cycle
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }
                 else if (!isChecked)
                 {
@@ -143,10 +144,10 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data) - 3);
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 10);
-                    cal.set(Calendar.MINUTE, 45);
+                    cal.set(Calendar.HOUR_OF_DAY, 18);
+                    cal.set(Calendar.MINUTE, 21);
                     //repeat the alarm every cycle
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }
                 else if (!isChecked)
                 {
@@ -175,10 +176,10 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data)/2 - 4);
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 10);
-                    cal.set(Calendar.MINUTE, 45);
+                    cal.set(Calendar.HOUR_OF_DAY, 18);
+                    cal.set(Calendar.MINUTE, 21);
                     //repeat the alarm every cycle
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }
                 else if (!isChecked)
                 {
