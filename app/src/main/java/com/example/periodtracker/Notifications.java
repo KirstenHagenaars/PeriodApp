@@ -110,8 +110,8 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data));
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 18);
-                    cal.set(Calendar.MINUTE, 21);
+                    cal.set(Calendar.HOUR_OF_DAY, 8);
+                    cal.set(Calendar.MINUTE, 0);
                     //repeat the alarm every cycle
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }
@@ -144,8 +144,8 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data) - 3);
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 18);
-                    cal.set(Calendar.MINUTE, 21);
+                    cal.set(Calendar.HOUR_OF_DAY, 8);
+                    cal.set(Calendar.MINUTE, 0);
                     //repeat the alarm every cycle
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }
@@ -176,8 +176,8 @@ public class Notifications extends Fragment {
                     Calendar predicted = Statistics.recentDate(data);
                     predicted.add(predicted.DAY_OF_MONTH,  MainActivity.getCyclelength(data)/2 - 4);
                     cal.set(Calendar.DAY_OF_MONTH, predicted.DAY_OF_MONTH);
-                    cal.set(Calendar.HOUR_OF_DAY, 18);
-                    cal.set(Calendar.MINUTE, 21);
+                    cal.set(Calendar.HOUR_OF_DAY, 8);
+                    cal.set(Calendar.MINUTE, 0);
                     //repeat the alarm every cycle
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), TimeUnit.DAYS.toMillis(MainActivity.getCyclelength(data)), broadcast);
                 }

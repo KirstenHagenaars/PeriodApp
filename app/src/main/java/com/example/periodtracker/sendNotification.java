@@ -19,8 +19,39 @@ public class sendNotification extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String NOTIFICATION_CHANNEL_ID  = "101";
+        String NOTIFICATION_CHANNEL_ID;
+        String title;
+        String content;
+        int drawable;
 
+        //check which action was given to the intent and send a notification accordingly
+        if (intent.getAction().equals("DAILY_NOTIFICATION"))
+        {
+            NOTIFICATION_CHANNEL_ID = "101";
+            title = "Daily notification";
+            content = "Don't forget your pill";
+            drawable = R.drawable.daily;
+        }
+        else if (intent.getAction().equals("PERIOD_NOTIFICATION")) {
+            NOTIFICATION_CHANNEL_ID = "102";
+            title = "Period alarm";
+            content = "Your period is predicted to arrive today";
+            drawable = R.drawable.periodstart;
+        }
+        else if (intent.getAction().equals("PERIODADVANCE_NOTIFICATION"))
+        {
+            NOTIFICATION_CHANNEL_ID = "103";
+            title = "Period alarm";
+            content = "Your period is predicted to arrive in 3 days";
+            drawable = R.drawable.periodadvance;
+        }
+        else
+        {
+            NOTIFICATION_CHANNEL_ID = "104";
+            title = "Fertility alarm";
+            content = "Your fertile window is predicted to open now";
+            drawable = R.drawable.fertility;
+        }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
         Intent repeating = new Intent(context, MainActivity.class);
@@ -40,55 +71,15 @@ public class sendNotification extends BroadcastReceiver {
         }
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
 
-        //check which action was given to the intent and send a notification accordingly
-        if (intent.getAction().equals("DAILY_NOTIFICATION"))
-        {
-            notificationBuilder.setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.periodstart)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setContentTitle("Daily notification")
-                    .setContentText("Don't forget your pill");
-            notificationManager.notify(100,notificationBuilder.build());
-        }
-        else if (intent.getAction().equals("PERIOD_NOTIFICATION"))
-        {
-            notificationBuilder.setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.periodadvance)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setContentTitle("Period alarm")
-                    .setContentText("Your period is predicted to arrive today");
-            notificationManager.notify(100,notificationBuilder.build());
-        }
-        else if (intent.getAction().equals("PERIODADVANCE_NOTIFICATION"))
-        {
-            notificationBuilder.setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.daily)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setContentTitle("Period alarm")
-                    .setContentText("Your period is predicted to arrive in 3 days");
-            notificationManager.notify(100,notificationBuilder.build());
-        }
-        else if (intent.getAction().equals("FERTILE_NOTIFICATION"))
-        {
-            notificationBuilder.setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.fertility)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setContentTitle("Fertility alarm")
-                    .setContentText("Your fertile window is predicted to open now");
-            notificationManager.notify(100,notificationBuilder.build());
-        }
+        notificationBuilder.setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(drawable)
+                .setPriority(Notification.PRIORITY_MAX)
+                .setContentTitle(title)
+                .setContentText(content);
+        notificationManager.notify(100,notificationBuilder.build());
     }
 }
 
