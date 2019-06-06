@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment home = new Home();
     final Fragment calendar = new CalendarFragment();
     final Fragment statistics = new Statistics();
-    final Fragment notifications = new Notifications(this);
+    final Fragment notifications = new Notifications(this, 21,0);
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
     static final String pref = "data";
@@ -130,12 +130,6 @@ public class MainActivity extends AppCompatActivity {
     {
         //retrieves the cycle length from the SharedPreferences
         return data.getInt("periodlength", 5);
-    }
-
-    public static void setCycleLength(SharedPreferences data)
-    {
-        //updates the average cycle length
-        //TODO change average of the cycle length
     }
 
     public static boolean lastDayOfMonth(int day, int month)
