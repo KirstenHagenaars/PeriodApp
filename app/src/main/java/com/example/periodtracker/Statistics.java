@@ -32,6 +32,7 @@ public class Statistics extends Fragment {
         TextView periodlength = statsFragment.findViewById(R.id.periodlength);
         TextView date = statsFragment.findViewById(R.id.initdate);
         System.out.println("FUUCK" + MainActivity.printDate(MainActivity.getDate(data, MainActivity.getIndex(data)-1)));
+        averageCycle(data);
         cyclelength.setText(cyclelength.getText()+ " " + getCycleLength(data));
         periodlength.setText(periodlength.getText() + " " + getPeriodLength(data));
         Calendar last = Statistics.recentDate(data);
@@ -50,18 +51,29 @@ public class Statistics extends Fragment {
         return data.getInt("periodlength", 0);
     }
 
-    public int averageCycle(SharedPreferences data)
+    public void averageCycle(SharedPreferences data)
     {
-        long[] diff = new long[9];
+        SharedPreferences.Editor editor = data.edit();
+        List<Long> diff = new ArrayList<>();
         List<Calendar> dates = sortDates(data);
-        for(int i = 0; i < 9; i++)
+        for(int i = 0; i < dates.size()-2; i++)
         {
             Calendar c1 = dates.get(i);
             Calendar c2 = dates.get(i+1);
-            diff[i]=(c1.getTimeInMillis()-c2.getTimeInMillis());
+            long difference = (c1.getTimeInMillis()-c2.getTimeInMillis());
+            if(difference > 1)
+                diff.add(difference);
         }
-        OptionalDouble difference = Arrays.stream(diff).average();
-        return (int) Math.round(difference.getAsDouble());
+        int ave = 0;
+        for(long d : diff)
+        {
+            ave += d;
+        }
+        if(diff.size() >0)
+        {
+            ave = ave/diff.size();
+            editor.putInt("cyclelength", ave);
+        }
     }
 
     public static List<Calendar> sortDates(SharedPreferences data)
@@ -70,9 +82,10 @@ public class Statistics extends Fragment {
         List<Calendar> list = new ArrayList<>();
         for(int i = 0; i < 10; i++)
         {
-            if(data.contains("index" + i));
+            if(data.contains("day" + i));
                 list.add(MainActivity.getDate(data, i));
         }
+
         list.sort(new Comparator<Calendar>() {
             @Override
             public int compare(Calendar o1, Calendar o2) {
@@ -83,6 +96,11 @@ public class Statistics extends Fragment {
                 return 0;//then they are equal
             }
         });
+        /*
+        for(Calendar c : list)
+            System.out.println("???" + c.toString());
+            */
+        //for some reason still contains dates with 0 as values but it's sorted, so I guess we could deal with it
         return list;
     }
 
@@ -90,6 +108,7 @@ public class Statistics extends Fragment {
     {
         List<Calendar> sorted = sortDates(data);
         Calendar recent = sorted.get(sorted.size()-1);
+        System.out.println("!!!" + recent.toString());
         return recent;
     }
 }
