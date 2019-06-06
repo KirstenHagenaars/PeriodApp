@@ -40,7 +40,6 @@ public class sendNotification extends BroadcastReceiver {
         }
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
 
-
         if (intent.getAction().equals("DAILY_NOTIFICATION"))
         {
             notificationBuilder.setAutoCancel(true)
@@ -97,30 +96,6 @@ public class sendNotification extends BroadcastReceiver {
                     .setContentInfo("hoo");
             notificationManager.notify(100,notificationBuilder.build());
         }
-    }
-
-    private void send(String NOTIFICATION_CHANNEL_ID, String title, String content, Drawable icon, Context context)
-    {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-
-        Intent repeating = new Intent(context, MainActivity.class);
-        repeating.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,100, repeating, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
-            // Configure the notification channel.
-            notificationChannel.setDescription("Sample Channel description");
-            notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.RED);
-            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-            notificationChannel.enableVibration(true);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
-
-
     }
 }
 

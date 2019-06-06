@@ -36,10 +36,7 @@ public class Notifications extends Fragment {
     Boolean periodAdvanceReminderChecked;
     Boolean fertileReminderChecked;
     //TODO: notifications are coming in immediately
-    //TODO: pop-up and notifications reload when fragment is opened
-    //If switch is checked when view is created, ignore
-    //save switch states and check for difference
-    //no longer the same channel TODO
+    //TODO: get date of first predicted period
 
     @SuppressLint("ValidFragment")
     public Notifications(Context current, int hour, int min) {
@@ -113,8 +110,8 @@ public class Notifications extends Fragment {
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days
                     //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period);
-                    cal.set(Calendar.HOUR_OF_DAY, 8);
-                    cal.set(Calendar.MINUTE, 0);
+                    cal.set(Calendar.HOUR_OF_DAY, 10);
+                    cal.set(Calendar.MINUTE, 45);
 
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
                 }
@@ -144,8 +141,8 @@ public class Notifications extends Fragment {
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get predicted period days and substract 3 days
                     //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted period-3);
-                    cal.set(Calendar.HOUR_OF_DAY, 8);
-                    cal.set(Calendar.MINUTE, 0);
+                    cal.set(Calendar.HOUR_OF_DAY, 10);
+                    cal.set(Calendar.MINUTE, 45);
 
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
                 }
@@ -174,8 +171,8 @@ public class Notifications extends Fragment {
                     cal.setTimeInMillis(System.currentTimeMillis());
                     //TODO get first date of fertile window
                     //cal.set(Calendar.DAY_OF_MONTH, first day of first predicted fertilewindow);
-                    cal.set(Calendar.HOUR_OF_DAY, 8);
-                    cal.set(Calendar.MINUTE, 0);
+                    cal.set(Calendar.HOUR_OF_DAY, 10);
+                    cal.set(Calendar.MINUTE, 45);
 
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 86400000* MainActivity.getCyclelength(data), broadcast);
                 }
