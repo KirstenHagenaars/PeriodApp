@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textAlignment="center"
+            android:layout_marginLeft="5dp"
             android:fontFamily="@font/printclear"
             android:textColor="@color/white"
             android:text="Bleeding: "/>
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/printclear"
             android:text="Cramps: "
+            android:layout_marginLeft="5dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />

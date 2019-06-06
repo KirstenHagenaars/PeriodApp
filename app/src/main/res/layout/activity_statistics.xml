@@ -14,12 +14,13 @@
         android:textAlignment="center"
         android:fontFamily="@font/dancing"
         android:textColor="@color/white"
-        android:textSize="50dp"/>
+        android:textSize="50sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginVertical="123dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -29,7 +30,7 @@
             android:fontFamily="@font/printclear"
             android:text="Cycle length: "
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/periodlength"
@@ -38,7 +39,7 @@
             android:fontFamily="@font/printclear"
             android:text="Period length: "
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/initdate"
@@ -47,7 +48,7 @@
             android:fontFamily="@font/printclear"
             android:text="Date of first period:"
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -56,15 +57,23 @@
         <TextView
             android:id="@+id/tips"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="242dp"
+            android:layout_marginVertical="333dp"
             android:fontFamily="@font/printclear"
+            android:paddingLeft="20dp"
             android:text="Tap to get a useful tip!"
             android:textColor="@color/white"
-            android:textSize="30dp" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginVertical="333dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/period"
+            android:fontFamily="@font/printclearbold"
+            android:text="Tip!"
+            android:textSize="20sp" />
 </LinearLayout>
 </FrameLayout>
