@@ -14,23 +14,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
 
-/*
-"cycleInitial" --> whether or not initialized
-"cyclelength"
-"periodlength"
-"day" --> of last period
-"month"
-"year"
-"periods" stringset/hashset of all periods
- */
 
 public class Home extends Fragment {
     Button dataButton;
@@ -42,7 +27,7 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        //keep initializing the view
         View view = getView();
         if (view != null) {
             init(view);
@@ -64,10 +49,9 @@ public class Home extends Fragment {
         Calendar today = Calendar.getInstance();
         Calendar last = Statistics.recentDate(data);
         final int startcycle = data.getInt("cyclelength", 0);
-        System.out.println("WTF"+last.toString());
 
         int calculations = startcycle;
-        //Calculations only work once we restart the app...WHY???HELP!!!! Kinda fixed...
+        //Calculations sometimes don't work
         while (calculations != 0 && !last.equals(today)) {
             last.add(Calendar.DAY_OF_MONTH, 1);
             calculations--;
@@ -82,7 +66,7 @@ public class Home extends Fragment {
         dataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //open pop-up
+                //open pop-up for entering data
                 new InitialDialog(getActivity());
 
             }
