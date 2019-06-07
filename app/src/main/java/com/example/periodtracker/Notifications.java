@@ -22,6 +22,8 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
+import static com.example.periodtracker.MainActivity.pref;
+
 public class Notifications extends Fragment {
     Context current;
     int hour;
@@ -38,14 +40,15 @@ public class Notifications extends Fragment {
     Boolean fertileReminderChecked;
 
     @SuppressLint("ValidFragment")
-    public Notifications(Context current, int hour, int min) {
+    public Notifications(Context current, int hour, int min, SharedPreferences data) {
         this.current = current;
         this.hour = hour;
         this.min = min;
-        this.dailyReminderChecked = false;
-        this.periodReminderChecked = false;
-        this.periodAdvanceReminderChecked = false;
-        this.fertileReminderChecked = false;
+        //get values of switches from data
+        this.dailyReminderChecked = intToBool(data.getInt("dailyReminderChecked", 0));
+        this.periodReminderChecked = intToBool(data.getInt("periodReminderChecked", 0));
+        this.periodAdvanceReminderChecked = intToBool(data.getInt("periodAdvanceReminderChecked", 0));
+        this.fertileReminderChecked = intToBool(data.getInt("fertileReminderChecked", 0));
     }
 
     public Notifications() {
@@ -60,7 +63,7 @@ public class Notifications extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final SharedPreferences data = this.getActivity().getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
+        final SharedPreferences data = this.getActivity().getSharedPreferences(pref, Context.MODE_PRIVATE);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_notifications, container, false);
 
@@ -69,6 +72,12 @@ public class Notifications extends Fragment {
         this.periodReminder = (Switch) v.findViewById(R.id.switchperiod);
         this.periodAdvanceReminder = (Switch) v.findViewById(R.id.switchperiodadvance);
         this.fertileReminder = (Switch) v.findViewById(R.id.switchfertile);
+
+        //sets the switches
+        dailyReminder.setChecked( intToBool(data.getInt("dailyReminderChecked", 0)));
+        periodReminder.setChecked( intToBool(data.getInt("periodReminderChecked", 0)));
+        periodAdvanceReminder.setChecked( intToBool(data.getInt("periodAdvanceReminderChecked", 0)));
+        fertileReminder.setChecked( intToBool(data.getInt("fertileReminderChecked", 0)));
 
         //define a listener for every switch and set an alarm for the notification
         /*sets a daily notification to remind the user she needs to take the birth
@@ -89,6 +98,9 @@ public class Notifications extends Fragment {
                     //cancel alarm manager
                     setDaily(false);
                 }
+                SharedPreferences.Editor editor = data.edit();
+                editor.putInt("dailyReminderChecked", boolToInt(dailyReminder.isChecked()));
+                editor.commit();
             }
         });
 
@@ -117,10 +129,13 @@ public class Notifications extends Fragment {
                 }
                 else if (!isChecked)
                 {
-                    dailyReminderChecked = false;
+                    periodReminderChecked = false;
                     //cancel alarm manager
                     alarmManager.cancel(broadcast);
                 }
+                SharedPreferences.Editor editor = data.edit();
+                editor.putInt("periodReminderChecked", boolToInt(periodReminder.isChecked()));
+                editor.commit();
             }
 
         });
@@ -151,10 +166,13 @@ public class Notifications extends Fragment {
                 }
                 else if (!isChecked)
                 {
-                    dailyReminderChecked = false;
+                    periodAdvanceReminderChecked = false;
                     //cancel alarm manager
                     alarmManager.cancel(broadcast);
                 }
+                SharedPreferences.Editor editor = data.edit();
+                editor.putInt("periodAdvanceReminderChecked", boolToInt(periodAdvanceReminder.isChecked()));
+                editor.commit();
             }
         });
 
@@ -183,10 +201,13 @@ public class Notifications extends Fragment {
                 }
                 else if (!isChecked)
                 {
-                    dailyReminderChecked = false;
+                    fertileReminderChecked = false;
                     //cancel alarm manager
                     alarmManager.cancel(broadcast);
                 }
+                SharedPreferences.Editor editor = data.edit();
+                editor.putInt("fertileReminderChecked", boolToInt(fertileReminder.isChecked()));
+                editor.commit();
             }
         });
 
@@ -200,6 +221,22 @@ public class Notifications extends Fragment {
         this.periodAdvanceReminderChecked = periodAdvanceReminder.isChecked();
         this.fertileReminderChecked = fertileReminder.isChecked();
         super.onPause();
+    }
+
+    private boolean intToBool(int a)
+    {
+        //converts an integer to a boolean
+        if (a>0)
+            return true;
+        return false;
+    }
+
+    private int boolToInt(boolean a)
+    {
+        //converts a boolean to an integer
+        if (a==false)
+            return 0;
+        return 1;
     }
 
     private void setTime(int hour, int min) {
@@ -243,7 +280,7 @@ public class Notifications extends Fragment {
         public TimePickerDialog(@NonNull Context context) {
             super(context);
             this.setContentView(R.layout.timepickerpopup);
-            final SharedPreferences data = context.getSharedPreferences(MainActivity.pref, Context.MODE_PRIVATE);
+            final SharedPreferences data = context.getSharedPreferences(pref, Context.MODE_PRIVATE);
             this.show();
             ok = this.findViewById(R.id.confirm);
             timePicker1 = (TimePicker) findViewById(R.id.timePicker1);

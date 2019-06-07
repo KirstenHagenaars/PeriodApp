@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment home = new Home();
     final Fragment calendar = new CalendarFragment();
     final Fragment statistics = new Statistics();
-    final Fragment notifications = new Notifications(this, 21,0);
+    Fragment notifications;
     //the fragment manager enables switching between fragments
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = statistics;
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
+        this.notifications = new Notifications(this, 21,0, data);
         SharedPreferences.Editor editor = data.edit();
         String index = "index";
 
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             new InitialDialog(MainActivity.this);
             editor.putInt("index", 1);
             editor.apply();
+            setSwitchesInitial();
         }
     }
 
@@ -215,6 +217,18 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
         editor.putInt("periodlength", d);
+        editor.commit();
+    }
+
+    public void setSwitchesInitial()
+    {
+        //stores the initial switch settings in SharedPreferences data
+        SharedPreferences data = getSharedPreferences(pref, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = data.edit();
+        editor.putInt("dailyReminderChecked", 0);
+        editor.putInt("periodReminderChecked", 0);
+        editor.putInt("periodAdvanceReminderChecked", 0);
+        editor.putInt("fertileReminderChecked", 0);
         editor.commit();
     }
 
